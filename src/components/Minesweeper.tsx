@@ -17,6 +17,7 @@ const Minesweeper = ({ columns = 10, mines = 5, rows = 10 }: Props) => {
       const row: ISquare[] = [];
       for (let j = 0; j < columns; j++) {
         const basicSquare: ISquare = {
+          isFlagged: Math.random() > 0.8,
           isMine: Math.random() > 0.75, // TODO: Assign dynamically
           isOpen: Math.random() > 0.5, // TODO: Assign dynamically
           neighborsWithMines: Math.floor(Math.random() * 5) // TODO: Assess dynamically

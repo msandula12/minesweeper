@@ -13,12 +13,10 @@ const Square = ({ square }: Props) => {
   };
 
   const squareDisplay = () => {
-    if (square.isMine) {
-      return (
-        <span>
-          <i className="fas fa-bomb" />
-        </span>
-      );
+    if (square.isFlagged) {
+      return <i className="fas fa-flag-checkered square-flag" />;
+    } else if (square.isMine) {
+      return <i className="fas fa-bomb" />;
     } else if (square.neighborsWithMines) {
       const neighborsCls = `neighbors ${getNumbeOfNeighbors(
         square.neighborsWithMines
@@ -29,7 +27,9 @@ const Square = ({ square }: Props) => {
     }
   };
 
-  const squareCls = `square ${square.isOpen ? 'open' : 'shut'}`;
+  const squareCls = `square ${
+    !square.isOpen || square.isFlagged ? 'shut' : 'open'
+  }`;
   return <div className={squareCls}>{square.isOpen && squareDisplay()}</div>;
 };
 

@@ -19,6 +19,31 @@
   background: #eee;
 }
 
+.shut {
+  background: #ccc;
+}
+
+.shut:hover {
+  background: #bbb;
+  cursor: pointer;
+}
+
 .neighbors {
   font-weight: bold;
+}
+
+.one-neighbors {
+  color: blue;
+}
+
+.two-neighbors {
+  color: green;
+}
+
+.three-neighbors {
+  color: red;
+}
+
+.four-neighbors {
+  color: purple;
 }

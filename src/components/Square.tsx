@@ -7,21 +7,30 @@ type Props = {
 };
 
 const Square = ({ square }: Props) => {
+  const getNumbeOfNeighbors = (neighbors: number) => {
+    const digitsAsWords = ['one', 'two', 'three', 'four'];
+    return digitsAsWords[neighbors - 1];
+  };
+
   const squareDisplay = () => {
-    if (!square.isOpen) {
-      return null;
-    } else if (square.isMine) {
+    if (square.isMine) {
       return (
         <span>
           <i className="fas fa-bomb" />
         </span>
       );
+    } else if (square.neighborsWithMines) {
+      const neighborsCls = `neighbors ${getNumbeOfNeighbors(
+        square.neighborsWithMines
+      )}-neighbors`;
+      return <span className={neighborsCls}>{square.neighborsWithMines}</span>;
     } else {
-      return <span className="neighbors">{square.neighborsWithMines}</span>;
+      return null;
     }
   };
 
-  return <div className="square">{squareDisplay()}</div>;
+  const squareCls = `square ${square.isOpen ? 'open' : 'shut'}`;
+  return <div className={squareCls}>{square.isOpen && squareDisplay()}</div>;
 };
 
 export default Square;

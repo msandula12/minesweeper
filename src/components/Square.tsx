@@ -8,10 +8,16 @@ type Props = {
 
 const Square = ({ square }: Props) => {
   const squareDisplay = () => {
-    if (square.isMine) {
-      return <span>M</span>;
+    if (!square.isOpen) {
+      return null;
+    } else if (square.isMine) {
+      return (
+        <span>
+          <i className="fas fa-bomb" />
+        </span>
+      );
     } else {
-      return <span>{square.neighborsWithMines}</span>;
+      return <span className="neighbors">{square.neighborsWithMines}</span>;
     }
   };
 

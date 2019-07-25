@@ -1,10 +1,10 @@
 .container {
-  margin: 0 auto;
+  margin: 50px auto;
 }
 
 .grid-row {
-  background: #eee;
   display: flex;
+  justify-content: center;
 }
 
 .square {
@@ -12,7 +12,13 @@
   width: 30px;
   height: 30px;
   box-sizing: border-box;
-  /* padding: 0.5em; */
   border: 1px solid #ddd;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eee;
+}
+
+.neighbors {
+  font-weight: bold;
 }

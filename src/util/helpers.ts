@@ -21,5 +21,19 @@ export const generateGridRows = (rows: number, columns: number): IGrid => {
 };
 
 export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
-  return 0;
+  const row = grid[square.rowIndex];
+  const rowAbove = grid[square.rowIndex - 1];
+  const rowBelow = grid[square.rowIndex + 1];
+
+  const neighbors = [
+    row[square.cellIndex - 1],
+    row[square.cellIndex + 1],
+    ...rowAbove.slice(square.cellIndex - 1, square.cellIndex + 1),
+    ...rowBelow.slice(square.cellIndex - 1, square.cellIndex + 1)
+  ];
+
+  console.log('neighbors: ', neighbors);
+
+  const neighborsWithMines = neighbors.filter(neighbor => neighbor.isMine);
+  return neighborsWithMines.length;
 };

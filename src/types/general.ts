@@ -1,10 +1,12 @@
 export interface IGame {
   columns: number;
   gameStatus: GameStatus;
-  grid: ISquare[][];
+  grid: IGrid;
   mines: number;
   rows: number;
 }
+
+export type IGrid = ISquare[][];
 
 export interface ISquare {
   cellIndex: number;

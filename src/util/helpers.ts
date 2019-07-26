@@ -1,10 +1,7 @@
-import { ISquare } from '../types/general';
+import { IGrid, ISquare } from '../types/general';
 
-export const generateGridRows = (
-  rows: number,
-  columns: number
-): ISquare[][] => {
-  const grid: ISquare[][] = [];
+export const generateGridRows = (rows: number, columns: number): IGrid => {
+  const grid: IGrid = [];
   for (let i = 0; i < rows; i++) {
     const row: ISquare[] = [];
     for (let j = 0; j < columns; j++) {
@@ -21,4 +18,8 @@ export const generateGridRows = (
     grid.push(row);
   }
   return grid;
+};
+
+export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
+  return 0;
 };

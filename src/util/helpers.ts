@@ -1,17 +1,44 @@
-import { IGrid, ISquare } from '../types/general';
+import { IGrid, IMineLocation, ISquare } from '../types/general';
 
-export const generateGridRows = (rows: number, columns: number): IGrid => {
+const getMinePositions = (
+  rows: number,
+  columns: number,
+  mines: number
+): IMineLocation[] => {
+  const positions: number[] = [];
+  while (positions.length < mines) {
+    const position = Math.floor(Math.random() * rows * columns);
+    if (!positions.includes(position)) {
+      positions.push(position);
+    }
+  }
+  return positions.map(position => {
+    return {
+      row: Math.floor(position / rows),
+      column: position % rows
+    };
+  });
+};
+
+export const generateGridRows = (
+  rows: number,
+  columns: number,
+  mines: number
+): IGrid => {
+  const minePositions = getMinePositions(rows, columns, mines);
   const grid: IGrid = [];
-  for (let i = 0; i < rows; i++) {
+  for (let rowIndex = 0; rowIndex < rows; rowIndex++) {
     const row: ISquare[] = [];
-    for (let j = 0; j < columns; j++) {
+    for (let cellIndex = 0; cellIndex < columns; cellIndex++) {
       const basicSquare: ISquare = {
-        cellIndex: j,
+        cellIndex,
         isFlagged: false,
-        isMine: Math.random() > 0.8, // TODO: Assign dynamically
-        isOpen: false,
+        isMine: minePositions.some(
+          mine => mine.row === rowIndex && mine.column === cellIndex
+        ),
+        isOpen: true,
         neighborsWithMines: 0,
-        rowIndex: i
+        rowIndex
       };
       row.push(basicSquare);
     }

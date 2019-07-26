@@ -13,7 +13,7 @@ const Minesweeper = () => {
         <Smiley />
         <TimeCounter />
       </div>
-      <Grid columns={10} rows={10} mines={5} />{' '}
+      <Grid columns={10} rows={10} mines={10} />{' '}
     </div>
   );
 };

@@ -17,6 +17,11 @@ export interface ISquare {
   rowIndex: number;
 }
 
+export interface IMineLocation {
+  column: number;
+  row: number;
+}
+
 export enum GameStatus {
   IN_PROGRESS = 'IN_PROGRESS',
   LOST = 'LOST',

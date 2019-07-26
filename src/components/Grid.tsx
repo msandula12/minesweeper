@@ -12,7 +12,7 @@ type Props = {
 };
 
 const Grid = ({ columns = 10, mines = 5, rows = 10 }: Props) => {
-  const gridRows = generateGridRows(rows, columns);
+  const gridRows = generateGridRows(rows, columns, mines);
   console.log('gridRows: ', gridRows);
 
   return (

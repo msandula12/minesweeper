@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, SyntheticEvent } from 'react';
 
 import { ISquare } from '../types/square';
 
@@ -8,6 +8,7 @@ type Props = {
 
 const Square = ({ square }: Props) => {
   const [isOpen, setIsOpen] = useState(square.isOpen);
+  const [isFlagged, setIsFlagged] = useState(square.isFlagged);
 
   const getNumbeOfNeighbors = (neighbors: number) => {
     const digitsAsWords = ['one', 'two', 'three', 'four'];
@@ -15,7 +16,9 @@ const Square = ({ square }: Props) => {
   };
 
   const squareDisplay = () => {
-    if (square.isFlagged) {
+    if (!isOpen && !isFlagged) {
+      return null;
+    } else if (isFlagged) {
       return <i className="fas fa-flag-checkered square-flag" />;
     } else if (square.isMine) {
       return <i className="fas fa-bomb" />;
@@ -35,10 +38,22 @@ const Square = ({ square }: Props) => {
     }
   };
 
-  const squareCls = `square ${!isOpen || square.isFlagged ? 'shut' : 'open'}`;
+  const toggleFlagged = (e: SyntheticEvent) => {
+    e.preventDefault();
+    e.persist();
+    if (!isOpen) {
+      setIsFlagged(!isFlagged);
+    }
+  };
+
+  const squareCls = `square ${!isOpen || isFlagged ? 'shut' : 'open'}`;
   return (
-    <div onClick={() => openSquare()} className={squareCls}>
-      {isOpen && squareDisplay()}
+    <div
+      onClick={openSquare}
+      onContextMenu={toggleFlagged}
+      className={squareCls}
+    >
+      {squareDisplay()}
     </div>
   );
 };

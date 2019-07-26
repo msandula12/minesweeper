@@ -9,7 +9,7 @@ export const generateGridRows = (
     const row: ISquare[] = [];
     for (let j = 0; j < columns; j++) {
       const basicSquare: ISquare = {
-        isFlagged: Math.random() > 0.8,
+        isFlagged: false,
         isMine: Math.random() > 0.75, // TODO: Assign dynamically
         isOpen: false,
         neighborsWithMines: Math.floor(Math.random() * 5) // TODO: Assess dynamically

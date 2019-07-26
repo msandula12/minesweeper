@@ -36,7 +36,7 @@ export const generateGridRows = (
         isMine: minePositions.some(
           mine => mine.row === rowIndex && mine.column === cellIndex
         ),
-        isOpen: true,
+        isOpen: false,
         neighborsWithMines: 0,
         rowIndex
       };
@@ -45,10 +45,12 @@ export const generateGridRows = (
     grid.push(row);
   }
 
-  // Once mines are in place, figure out the numberOfNeighbors each square has
+  // Once mines are in place, figure out the numberOfNeighbors each non-mine has
   grid.forEach(row => {
     row.forEach(square => {
-      square.neighborsWithMines = getNumberOfNeighbors(square, grid);
+      if (!square.isMine) {
+        square.neighborsWithMines = getNumberOfNeighbors(square, grid);
+      }
     });
   });
 

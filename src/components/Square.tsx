@@ -3,6 +3,8 @@ import classNames from 'classnames';
 
 import { ISquare } from '../types/general';
 
+import Icon from './Icon';
+
 type Props = {
   square: ISquare;
 };
@@ -20,9 +22,9 @@ const Square = ({ square }: Props) => {
     if (!isOpen && !isFlagged) {
       return null;
     } else if (isFlagged) {
-      return <i className="fas fa-flag-checkered square-flag" />;
+      return <Icon name="flag-checkered" />;
     } else if (square.isMine) {
-      return <i className="fas fa-bomb" />;
+      return <Icon name="bomb" />;
     } else if (square.neighborsWithMines) {
       const numOfNeighbors = getNumbeOfNeighbors(square.neighborsWithMines);
       const neighborsCls = `neighbors ${numOfNeighbors}-neighbors`;

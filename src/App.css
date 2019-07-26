@@ -53,16 +53,33 @@
   font-size: var(--size-xl);
 }
 
+.margin-right-xs {
+  margin-right: var(--size-xs);
+}
+
 /* COMPONENT-SPECIFIC */
 .header {
   text-align: center;
   margin-bottom: 30px;
 }
 
+.icon {
+  margin-right: 5px;
+}
+
+.text-btn {
+  opacity: 0.6;
+}
+
+.text-btn:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
 .grid {
   display: inline-block;
   border: 1px solid #ddd;
-  margin: 0 auto;
+  margin: 0 auto 20px;
 }
 
 .toolbar {

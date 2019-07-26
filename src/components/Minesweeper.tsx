@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ISquare } from '../types/square';
+import { generateGridRows } from '../util/helpers';
 
 import Square from './Square';
 
@@ -11,29 +12,12 @@ type Props = {
 };
 
 const Minesweeper = ({ columns = 10, mines = 5, rows = 10 }: Props) => {
-  const gridRows = () => {
-    const grid: ISquare[][] = [];
-    for (let i = 0; i < rows; i++) {
-      const row: ISquare[] = [];
-      for (let j = 0; j < columns; j++) {
-        const basicSquare: ISquare = {
-          isFlagged: Math.random() > 0.8,
-          isMine: Math.random() > 0.75, // TODO: Assign dynamically
-          isOpen: Math.random() > 0.5, // TODO: Assign dynamically
-          neighborsWithMines: Math.floor(Math.random() * 5) // TODO: Assess dynamically
-        };
-        row.push(basicSquare);
-      }
-      grid.push(row);
-    }
-
-    console.log(grid);
-    return grid;
-  };
+  const gridRows = generateGridRows(rows, columns);
+  console.log('gridRows: ', gridRows);
 
   return (
     <div>
-      {gridRows().map((row: ISquare[], rowIndex: number) => (
+      {gridRows.map((row: ISquare[], rowIndex: number) => (
         <div className="grid-row" key={`row-${rowIndex}`}>
           {row.map((square: ISquare, sqIndex: number) => (
             <Square key={`square-${sqIndex}`} square={square} />

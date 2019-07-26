@@ -7,7 +7,12 @@ type Props = {
 };
 
 const MineCounter = ({ mines }: Props) => {
-  return <Counter count={mines} />;
+  return (
+    <div>
+      <span className="mono">Mines: </span>
+      <Counter count={mines} />
+    </div>
+  );
 };
 
 export default MineCounter;

@@ -5,9 +5,10 @@ import Minesweeper from './components/Minesweeper';
 
 const App: React.FC = () => {
   return (
-    <div className="container">
+    <>
+      <h1 className="header">Minesweeper</h1>
       <Minesweeper />
-    </div>
+    </>
   );
 };
 

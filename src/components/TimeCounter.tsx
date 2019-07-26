@@ -14,7 +14,12 @@ const TimeCounter = () => {
 
   // setInterval(countTime, 1000);
 
-  return <Counter count={secondsElapsed} />;
+  return (
+    <div>
+      <span className="mono">Time: </span>
+      <Counter count={secondsElapsed} />
+    </div>
+  );
 };
 
 export default TimeCounter;

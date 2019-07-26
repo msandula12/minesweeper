@@ -1,14 +1,19 @@
-.container {
-  display: flex;
+.header {
+  text-align: center;
+  font-family: monospace;
+  font-size: 40px;
+  margin-bottom: 30px;
 }
 
 .minesweeper {
-  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .grid {
   display: inline-block;
   border: 1px solid #ddd;
+  margin: 0 auto;
 }
 
 .grid-row {
@@ -19,10 +24,11 @@
 .toolbar {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  width: 500px;
+  margin: 0 auto 20px;
 }
 
-.counter {
+.mono {
   font-family: monospace;
   font-size: 32px;
 }
@@ -55,8 +61,6 @@
 .shut:hover {
   cursor: pointer;
   border-color: #bbb;
-  /* border-radius: 2px; */
-  /* border: 2px solid #bbb; */
   outline: 1px solid #bbb;
   z-index: 10;
 }

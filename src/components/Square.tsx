@@ -33,7 +33,7 @@ const Square = ({ square }: Props) => {
   };
 
   const openSquare = () => {
-    if (!isOpen) {
+    if (!isOpen && !isFlagged) {
       setIsOpen(true);
     }
   };

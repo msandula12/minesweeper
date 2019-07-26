@@ -1,31 +1,9 @@
 import React from 'react';
 
-import { ISquare } from '../types/square';
-import { generateGridRows } from '../util/helpers';
+import Grid from './Grid';
 
-import Square from './Square';
-
-type Props = {
-  columns: number;
-  mines: number;
-  rows: number;
-};
-
-const Minesweeper = ({ columns = 10, mines = 5, rows = 10 }: Props) => {
-  const gridRows = generateGridRows(rows, columns);
-  console.log('gridRows: ', gridRows);
-
-  return (
-    <div className="grid">
-      {gridRows.map((row: ISquare[], rowIndex: number) => (
-        <div className="grid-row" key={`row-${rowIndex}`}>
-          {row.map((square: ISquare, sqIndex: number) => (
-            <Square key={`square-${sqIndex}`} square={square} />
-          ))}
-        </div>
-      ))}
-    </div>
-  );
+const Minesweeper = () => {
+  return <Grid columns={10} rows={10} mines={5} />;
 };
 
 export default Minesweeper;

@@ -1,6 +1,7 @@
 import React from 'react';
 
-import Counter from './Counter';
+import MineCounter from './MineCounter';
+import TimeCounter from './TimeCounter';
 import Grid from './Grid';
 import Smiley from './Smiley';
 
@@ -8,9 +9,9 @@ const Minesweeper = () => {
   return (
     <div className="minesweeper">
       <div className="toolbar">
-        <Counter count={5} />
+        <MineCounter mines={5} />
         <Smiley />
-        <Counter count={20} />
+        <TimeCounter />
       </div>
       <Grid columns={10} rows={10} mines={5} />{' '}
     </div>

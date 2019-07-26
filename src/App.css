@@ -16,16 +16,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #eee;
 }
 
 .shut {
-  background: #ccc;
+  background: #eee;
 }
 
 .shut:hover {
-  background: #bbb;
   cursor: pointer;
+  border-color: #bbb;
+}
+
+.open {
+  background: #ccc;
 }
 
 .neighbors {

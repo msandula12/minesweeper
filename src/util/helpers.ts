@@ -1,6 +1,6 @@
 import { IGrid, IMineLocation, ISquare } from '../types/general';
 
-const getMinePositions = (
+const getMineLocations = (
   rows: number,
   columns: number,
   mines: number
@@ -25,7 +25,7 @@ export const generateGridRows = (
   columns: number,
   mines: number
 ): IGrid => {
-  const minePositions = getMinePositions(rows, columns, mines);
+  const mineLocations = getMineLocations(rows, columns, mines);
   const grid: IGrid = [];
   for (let rowIndex = 0; rowIndex < rows; rowIndex++) {
     const row: ISquare[] = [];
@@ -33,7 +33,7 @@ export const generateGridRows = (
       const basicSquare: ISquare = {
         cellIndex,
         isFlagged: false,
-        isMine: minePositions.some(
+        isMine: mineLocations.some(
           mine => mine.row === rowIndex && mine.column === cellIndex
         ),
         isOpen: false,

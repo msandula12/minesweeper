@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Counter from './Counter';
 import Grid from './Grid';
 import Smiley from './Smiley';
 
@@ -7,9 +8,9 @@ const Minesweeper = () => {
   return (
     <div className="minesweeper">
       <div className="toolbar">
-        <div>005</div>
+        <Counter count={5} />
         <Smiley />
-        <div>000</div>
+        <Counter count={0} />
       </div>
       <Grid columns={10} rows={10} mines={5} />{' '}
     </div>

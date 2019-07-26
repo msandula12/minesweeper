@@ -22,6 +22,11 @@
   margin-bottom: 20px;
 }
 
+.counter {
+  font-family: monospace;
+  font-size: 32px;
+}
+
 .smiley {
   font-size: 32px;
   color: goldenrod;

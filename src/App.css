@@ -73,6 +73,10 @@
   font-weight: bold;
 }
 
+.exploded {
+  background: crimson;
+}
+
 .one-neighbors {
   color: blue;
 }

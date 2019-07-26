@@ -46,7 +46,9 @@ const Square = ({ square }: Props) => {
     }
   };
 
-  const squareCls = `square ${!isOpen || isFlagged ? 'shut' : 'open'}`;
+  const squareCls = `square ${!isOpen || isFlagged ? 'shut' : 'open'} ${
+    isOpen && square.isMine ? 'exploded' : ''
+  }`;
   return (
     <div
       onClick={openSquare}

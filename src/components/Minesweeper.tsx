@@ -1,10 +1,10 @@
 import React from 'react';
 
-import MineCounter from './MineCounter';
-import TimeCounter from './TimeCounter';
 import Grid from './Grid';
 import Icon from './Icon';
+import MineCounter from './MineCounter';
 import Smiley from './Smiley';
+import TimeCounter from './TimeCounter';
 
 const Minesweeper = () => {
   return (

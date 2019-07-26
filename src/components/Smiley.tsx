@@ -1,10 +1,19 @@
 import React from 'react';
 
+// import { GameStatus } from '../types/general';
+
 const Smiley = () => {
   const smileType = (): string => {
-    return 'smile'; // NORMAL
-    // return 'dizzy'; // LOST
-    // return 'grin-stars'; // WON
+    // switch () {
+    //   case GameStatus.WON:
+    //     return 'grin-stars';
+    //   case GameStatus.LOST:
+    //     return 'dizzy';
+    //   default:
+    //     return 'smile';
+    // }
+
+    return 'smile';
   };
 
   const startNewGame = () => {

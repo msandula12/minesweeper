@@ -15,8 +15,8 @@ const TimeCounter = () => {
   // setInterval(countTime, 1000);
 
   return (
-    <div>
-      <span className="mono">Time: </span>
+    <div className="flex-column align-center">
+      <div className="counter-label">Time</div>
       <Counter count={secondsElapsed} />
     </div>
   );

@@ -12,7 +12,10 @@ const Smiley = () => {
   };
 
   return (
-    <i onClick={startNewGame} className={`fas fa-${smileType()} smiley`} />
+    <i
+      onClick={startNewGame}
+      className={`fas fa-${smileType()} smiley font-xl`}
+    />
   );
 };
 

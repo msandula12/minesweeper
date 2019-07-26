@@ -1,13 +1,62 @@
-.header {
-  text-align: center;
-  font-family: monospace;
-  font-size: 40px;
-  margin-bottom: 30px;
+:root {
+  /* SIZES */
+  --size-xs: 4px;
+  --size-s: 8px;
+  --size-m: 16px;
+  --size-l: 32px;
+  --size-xl: 64px;
+
+  /* NEIGHBORS */
+  --color-one: blue;
+  --color-two: green;
+  --color-three: red;
+  --color-four: purple;
+
+  /* SQUARE STATE */
+  --square-exploded: crimson;
+  --square-open: #ccc;
+  --square-shut: #eee;
 }
 
-.minesweeper {
+/* HELPERS */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
   display: flex;
   flex-direction: column;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.mono {
+  font-family: monospace;
+}
+
+.font-l {
+  font-size: var(--size-l);
+}
+
+.font-xl {
+  font-size: var(--size-xl);
+}
+
+/* COMPONENT-SPECIFIC */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .grid {
@@ -16,25 +65,17 @@
   margin: 0 auto;
 }
 
-.grid-row {
-  display: flex;
-  justify-content: center;
-}
-
 .toolbar {
-  display: flex;
-  justify-content: space-between;
-  width: 500px;
+  width: 300px;
   margin: 0 auto 20px;
 }
 
-.mono {
-  font-family: monospace;
-  font-size: 32px;
+.counter-label {
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .smiley {
-  font-size: 32px;
   color: goldenrod;
 }
 
@@ -44,18 +85,14 @@
 }
 
 .square {
-  display: inline-block;
   width: 30px;
   height: 30px;
   box-sizing: border-box;
   border: 1px solid #ddd;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .shut {
-  background: #eee;
+  background: var(--square-shut);
 }
 
 .shut:hover {
@@ -66,7 +103,7 @@
 }
 
 .open {
-  background: #ccc;
+  background: var(--square-open);
 }
 
 .neighbors {
@@ -74,21 +111,21 @@
 }
 
 .exploded {
-  background: crimson;
+  background: var(--square-exploded);
 }
 
 .one-neighbors {
-  color: blue;
+  color: var(--color-one);
 }
 
 .two-neighbors {
-  color: green;
+  color: var(--color-two);
 }
 
 .three-neighbors {
-  color: red;
+  color: var(--color-three);
 }
 
 .four-neighbors {
-  color: purple;
+  color: var(--color-four);
 }

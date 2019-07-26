@@ -7,8 +7,8 @@ import Smiley from './Smiley';
 
 const Minesweeper = () => {
   return (
-    <div className="minesweeper">
-      <div className="toolbar">
+    <div className="flex-column">
+      <div className="toolbar flex-row justify-between">
         <MineCounter mines={5} />
         <Smiley />
         <TimeCounter />

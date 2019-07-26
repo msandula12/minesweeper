@@ -8,8 +8,8 @@ type Props = {
 
 const MineCounter = ({ mines }: Props) => {
   return (
-    <div>
-      <span className="mono">Mines: </span>
+    <div className="flex-column align-center">
+      <div className="counter-label">Mines</div>
       <Counter count={mines} />
     </div>
   );

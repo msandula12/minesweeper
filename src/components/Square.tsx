@@ -46,11 +46,17 @@ const Square = ({ square }: Props) => {
     }
   };
 
-  const squareCls = classNames('square', {
-    exploded: isOpen && square.isMine,
-    open: isOpen,
-    shut: !isOpen || isFlagged
-  });
+  const squareCls = classNames(
+    'square',
+    'flex-row',
+    'align-center',
+    'justify-center',
+    {
+      exploded: isOpen && square.isMine,
+      open: isOpen,
+      shut: !isOpen || isFlagged
+    }
+  );
 
   return (
     <div

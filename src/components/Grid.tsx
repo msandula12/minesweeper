@@ -18,7 +18,7 @@ const Grid = ({ columns = 10, mines = 5, rows = 10 }: Props) => {
   return (
     <div className="grid">
       {gridRows.map((row: ISquare[], rowIndex: number) => (
-        <div className="grid-row" key={`row-${rowIndex}`}>
+        <div className="flex-row justify-center" key={`row-${rowIndex}`}>
           {row.map((square: ISquare, sqIndex: number) => (
             <Square key={`square-${sqIndex}`} square={square} />
           ))}

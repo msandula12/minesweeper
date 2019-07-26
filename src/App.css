@@ -1,4 +1,10 @@
 .container {
+  display: flex;
+}
+
+.grid {
+  display: inline-block;
+  border: 1px solid #ddd;
   margin: 50px auto;
 }
 
@@ -25,6 +31,10 @@
 .shut:hover {
   cursor: pointer;
   border-color: #bbb;
+  /* border-radius: 2px; */
+  /* border: 2px solid #bbb; */
+  outline: 1px solid #bbb;
+  z-index: 10;
 }
 
 .open {

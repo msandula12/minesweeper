@@ -16,7 +16,7 @@ const Minesweeper = ({ columns = 10, mines = 5, rows = 10 }: Props) => {
   console.log('gridRows: ', gridRows);
 
   return (
-    <div>
+    <div className="grid">
       {gridRows.map((row: ISquare[], rowIndex: number) => (
         <div className="grid-row" key={`row-${rowIndex}`}>
           {row.map((square: ISquare, sqIndex: number) => (

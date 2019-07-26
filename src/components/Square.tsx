@@ -1,4 +1,5 @@
 import React, { useState, SyntheticEvent } from 'react';
+import classNames from 'classnames';
 
 import { ISquare } from '../types/general';
 
@@ -23,9 +24,8 @@ const Square = ({ square }: Props) => {
     } else if (square.isMine) {
       return <i className="fas fa-bomb" />;
     } else if (square.neighborsWithMines) {
-      const neighborsCls = `neighbors ${getNumbeOfNeighbors(
-        square.neighborsWithMines
-      )}-neighbors`;
+      const numOfNeighbors = getNumbeOfNeighbors(square.neighborsWithMines);
+      const neighborsCls = `neighbors ${numOfNeighbors}-neighbors`;
       return <span className={neighborsCls}>{square.neighborsWithMines}</span>;
     } else {
       return null;
@@ -46,9 +46,12 @@ const Square = ({ square }: Props) => {
     }
   };
 
-  const squareCls = `square ${!isOpen || isFlagged ? 'shut' : 'open'} ${
-    isOpen && square.isMine ? 'exploded' : ''
-  }`;
+  const squareCls = classNames('square', {
+    exploded: isOpen && square.isMine,
+    open: isOpen,
+    shut: !isOpen || isFlagged
+  });
+
   return (
     <div
       onClick={openSquare}

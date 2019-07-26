@@ -52,7 +52,7 @@ const Square = ({ square }: Props) => {
     'align-center',
     'justify-center',
     {
-      exploded: isOpen && square.isMine,
+      // exploded: isOpen && square.isMine, // TODO: Should only be the clicked-on mine
       open: isOpen,
       shut: !isOpen || isFlagged
     }

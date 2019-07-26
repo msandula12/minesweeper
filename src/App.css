@@ -2,15 +2,29 @@
   display: flex;
 }
 
+.minesweeper {
+  margin: 50px auto;
+}
+
 .grid {
   display: inline-block;
   border: 1px solid #ddd;
-  margin: 50px auto;
 }
 
 .grid-row {
   display: flex;
   justify-content: center;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.smiley {
+  font-size: 32px;
+  color: goldenrod;
 }
 
 .square {

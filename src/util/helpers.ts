@@ -5,17 +5,17 @@ const getMineLocations = (
   columns: number,
   mines: number
 ): IMineLocation[] => {
-  const positions: number[] = [];
-  while (positions.length < mines) {
-    const position = Math.floor(Math.random() * rows * columns);
-    if (!positions.includes(position)) {
-      positions.push(position);
+  const locations: number[] = [];
+  while (locations.length < mines) {
+    const randomLocation = Math.floor(Math.random() * rows * columns);
+    if (!locations.includes(randomLocation)) {
+      locations.push(randomLocation);
     }
   }
-  return positions.map(position => {
+  return locations.map(location => {
     return {
-      row: Math.floor(position / rows),
-      column: position % rows
+      row: Math.floor(location / rows),
+      column: location % rows
     };
   });
 };

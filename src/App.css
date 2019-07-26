@@ -27,6 +27,11 @@
   color: goldenrod;
 }
 
+.smiley:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
 .square {
   display: inline-block;
   width: 30px;

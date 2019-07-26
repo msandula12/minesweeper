@@ -7,7 +7,13 @@ const Smiley = () => {
     // return 'grin-stars'; // WON
   };
 
-  return <i className={`fas fa-${smileType()} smiley`} />;
+  const startNewGame = () => {
+    console.log('start new game!');
+  };
+
+  return (
+    <i onClick={startNewGame} className={`fas fa-${smileType()} smiley`} />
+  );
 };
 
 export default Smiley;

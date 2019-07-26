@@ -1,4 +1,4 @@
-import { ISquare } from '../types/square';
+import { ISquare } from '../types/general';
 
 export const generateGridRows = (
   rows: number,
@@ -9,10 +9,12 @@ export const generateGridRows = (
     const row: ISquare[] = [];
     for (let j = 0; j < columns; j++) {
       const basicSquare: ISquare = {
+        cellIndex: j,
         isFlagged: false,
         isMine: Math.random() > 0.75, // TODO: Assign dynamically
         isOpen: false,
-        neighborsWithMines: Math.floor(Math.random() * 5) // TODO: Assess dynamically
+        neighborsWithMines: Math.floor(Math.random() * 5), // TODO: Assess dynamically
+        rowIndex: i
       };
       row.push(basicSquare);
     }

@@ -1,6 +1,6 @@
 import React, { useState, SyntheticEvent } from 'react';
 
-import { ISquare } from '../types/square';
+import { ISquare } from '../types/general';
 
 type Props = {
   square: ISquare;

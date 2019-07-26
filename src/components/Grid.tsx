@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ISquare } from '../types/square';
+import { ISquare } from '../types/general';
 import { generateGridRows } from '../util/helpers';
 
 import Square from './Square';

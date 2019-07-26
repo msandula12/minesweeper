@@ -26,9 +26,9 @@ export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
   const rowBelow = grid[square.rowIndex + 1];
 
   const neighbors = [
+    ...rowAbove.slice(square.cellIndex - 1, square.cellIndex + 1),
     row[square.cellIndex - 1],
     row[square.cellIndex + 1],
-    ...rowAbove.slice(square.cellIndex - 1, square.cellIndex + 1),
     ...rowBelow.slice(square.cellIndex - 1, square.cellIndex + 1)
   ];
 

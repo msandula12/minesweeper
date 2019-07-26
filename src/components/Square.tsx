@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { ISquare } from '../types/square';
 
@@ -7,6 +7,8 @@ type Props = {
 };
 
 const Square = ({ square }: Props) => {
+  const [isOpen, setIsOpen] = useState(square.isOpen);
+
   const getNumbeOfNeighbors = (neighbors: number) => {
     const digitsAsWords = ['one', 'two', 'three', 'four'];
     return digitsAsWords[neighbors - 1];
@@ -27,10 +29,18 @@ const Square = ({ square }: Props) => {
     }
   };
 
-  const squareCls = `square ${
-    !square.isOpen || square.isFlagged ? 'shut' : 'open'
-  }`;
-  return <div className={squareCls}>{square.isOpen && squareDisplay()}</div>;
+  const openSquare = () => {
+    if (!isOpen) {
+      setIsOpen(true);
+    }
+  };
+
+  const squareCls = `square ${!isOpen || square.isFlagged ? 'shut' : 'open'}`;
+  return (
+    <div onClick={() => openSquare()} className={squareCls}>
+      {isOpen && squareDisplay()}
+    </div>
+  );
 };
 
 export default Square;

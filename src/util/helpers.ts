@@ -11,7 +11,7 @@ export const generateGridRows = (
       const basicSquare: ISquare = {
         isFlagged: Math.random() > 0.8,
         isMine: Math.random() > 0.75, // TODO: Assign dynamically
-        isOpen: Math.random() > 0.5, // TODO: Assign dynamically
+        isOpen: false,
         neighborsWithMines: Math.floor(Math.random() * 5) // TODO: Assess dynamically
       };
       row.push(basicSquare);

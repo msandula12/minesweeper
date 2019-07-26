@@ -5,7 +5,9 @@ type Props = {
 };
 
 const Counter = ({ count }: Props) => {
-  return <span className="counter">{count}</span>;
+  const paddedCount = String(count).padStart(3, '0');
+
+  return <span className="counter">{paddedCount}</span>;
 };
 
 export default Counter;

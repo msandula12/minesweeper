@@ -10,7 +10,7 @@ const Minesweeper = () => {
       <div className="toolbar">
         <Counter count={5} />
         <Smiley />
-        <Counter count={0} />
+        <Counter count={20} />
       </div>
       <Grid columns={10} rows={10} mines={5} />{' '}
     </div>

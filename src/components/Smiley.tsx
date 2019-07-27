@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Icon from './Icon';
+
 // import { GameStatus } from '../types/general';
 
 const Smiley = () => {
@@ -21,9 +23,10 @@ const Smiley = () => {
   };
 
   return (
-    <i
+    <Icon
+      className="smiley font-xl"
+      name={smileType()}
       onClick={startNewGame}
-      className={`fas fa-${smileType()} smiley font-xl`}
     />
   );
 };

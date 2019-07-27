@@ -1,13 +1,20 @@
 import React from 'react';
 
 type Props = {
+  className?: string;
   name: string;
+  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   withMargin?: boolean;
 };
 
-const Icon = ({ name, withMargin }: Props) => {
+const Icon = ({ className, name, onClick, withMargin }: Props) => {
   return (
-    <i className={`fas fa-${name} ${withMargin ? 'margin-right-xs' : ''}`} />
+    <i
+      onClick={onClick}
+      className={`fas fa-${name} ${
+        withMargin ? 'margin-right-xs' : ''
+      } ${className}`}
+    />
   );
 };
 

@@ -15,7 +15,7 @@ const Grid = ({ columns = 10, mines = 5, rows = 10 }: Props) => {
   const gridRows = generateGridRows(rows, columns, mines);
 
   return (
-    <div className="grid">
+    <div className="grid margin-bottom-m">
       {gridRows.map((row: ISquare[], rowIndex: number) => (
         <div className="flex-row justify-center" key={`row-${rowIndex}`}>
           {row.map((square: ISquare, sqIndex: number) => (

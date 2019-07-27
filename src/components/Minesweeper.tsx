@@ -8,14 +8,14 @@ import TimeCounter from './TimeCounter';
 
 const Minesweeper = () => {
   return (
-    <div className="flex-column">
-      <div className="toolbar flex-row justify-between">
+    <div className="flex-column minesweeper">
+      <div className="fluid flex-row justify-between margin-bottom-m">
         <MineCounter mines={5} />
         <Smiley />
         <TimeCounter />
       </div>
       <Grid columns={10} rows={10} mines={10} />{' '}
-      <div className="toolbar flex-row justify-between">
+      <div className="fluid flex-row justify-between margin-bottom-m">
         <div className="text-btn">
           <Icon name="layer-group" withMargin />
           Level

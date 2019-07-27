@@ -6,7 +6,7 @@ import Minesweeper from './components/Minesweeper';
 const App: React.FC = () => {
   return (
     <>
-      <h1 className="header mono font-l">Minesweeper</h1>
+      <h1 className="center mono font-l">Minesweeper</h1>
       <Minesweeper />
     </>
   );

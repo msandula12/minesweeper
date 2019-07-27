@@ -29,6 +29,14 @@
   flex-direction: column;
 }
 
+.fluid {
+  width: 100%;
+}
+
+.center {
+  text-align: center;
+}
+
 .align-center {
   align-items: center;
 }
@@ -57,16 +65,11 @@
   margin-right: var(--size-xs);
 }
 
+.margin-bottom-m {
+  margin-bottom: var(--size-m);
+}
+
 /* COMPONENT-SPECIFIC */
-.header {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.icon {
-  margin-right: 5px;
-}
-
 .text-btn {
   opacity: 0.6;
 }
@@ -76,15 +79,14 @@
   cursor: pointer;
 }
 
+.minesweeper {
+  width: 300px;
+  margin: 0 auto;
+}
+
 .grid {
   display: inline-block;
   border: 1px solid #ddd;
-  margin: 0 auto 20px;
-}
-
-.toolbar {
-  width: 300px;
-  margin: 0 auto 20px;
 }
 
 .counter-label {
@@ -102,8 +104,8 @@
 }
 
 .square {
-  width: 30px;
-  height: 30px;
+  width: var(--size-l);
+  height: var(--size-l);
   box-sizing: border-box;
   border: 1px solid #ddd;
 }

@@ -20,7 +20,7 @@ const Minesweeper = () => {
   return (
     <div className="flex-column minesweeper">
       <div className="fluid flex-row justify-between margin-bottom-m">
-        <MineCounter mines={5} />
+        <MineCounter mines={config.mines} />
         <Smiley />
         <TimeCounter />
       </div>

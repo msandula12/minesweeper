@@ -12,6 +12,7 @@ type Props = {
 const Square = ({ square }: Props) => {
   const [isOpen, setIsOpen] = useState(square.isOpen);
   const [isFlagged, setIsFlagged] = useState(square.isFlagged);
+  const [isLosingMiine, setIsLosingMine] = useState(false);
 
   const getNumbeOfNeighbors = (neighbors: number) => {
     const digitsAsWords = ['one', 'two', 'three', 'four'];
@@ -37,6 +38,11 @@ const Square = ({ square }: Props) => {
   const openSquare = () => {
     if (!isOpen && !isFlagged) {
       setIsOpen(true);
+
+      if (square.isMine) {
+        console.warn('GAME OVER!');
+        setIsLosingMine(true);
+      }
     }
   };
 
@@ -54,7 +60,7 @@ const Square = ({ square }: Props) => {
     'align-center',
     'justify-center',
     {
-      // exploded: isOpen && square.isMine, // TODO: Should only be the clicked-on mine
+      exploded: isLosingMiine, // TODO: Should only be the clicked-on mine
       open: isOpen,
       shut: !isOpen || isFlagged
     }

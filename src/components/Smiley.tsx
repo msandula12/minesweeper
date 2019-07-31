@@ -2,24 +2,23 @@ import React from 'react';
 
 import Icon from './Icon';
 
-// import { GameStatus } from '../types/general';
+import { GameStatus } from '../types/general';
 
-const Smiley = () => {
+type Props = {
+  status: GameStatus;
+  startNewGame: () => unknown;
+};
+
+const Smiley = ({ status, startNewGame }: Props) => {
   const smileType = (): string => {
-    // switch () {
-    //   case GameStatus.WON:
-    //     return 'grin-stars';
-    //   case GameStatus.LOST:
-    //     return 'dizzy';
-    //   default:
-    //     return 'smile';
-    // }
-
-    return 'smile';
-  };
-
-  const startNewGame = () => {
-    console.log('start new game!');
+    switch (status) {
+      case GameStatus.WON:
+        return 'grin-stars';
+      case GameStatus.LOST:
+        return 'dizzy';
+      default:
+        return 'smile';
+    }
   };
 
   return (

@@ -70,6 +70,15 @@ export const getMineLocations = (
   });
 };
 
+export const getNewGame = (config: IGameConfiguration): IGame => {
+  return {
+    config,
+    grid: generateGridRows(config.rows, config.columns, config.mines),
+    id: generateRandomID(),
+    status: GameStatus.IN_PROGRESS
+  };
+};
+
 export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
   const rowAbove = grid[square.rowIndex - 1] || [];
   const rowOfSquare = grid[square.rowIndex];
@@ -85,13 +94,4 @@ export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
     rowBelow[square.cellIndex + 1]
   ].filter(Boolean);
   return neighbors.filter(neighbor => neighbor.isMine).length;
-};
-
-export const startNewGame = (config: IGameConfiguration): IGame => {
-  return {
-    config,
-    grid: generateGridRows(config.rows, config.columns, config.mines),
-    id: generateRandomID(),
-    status: GameStatus.IN_PROGRESS
-  };
 };

@@ -3,7 +3,7 @@ import './App.css';
 
 import { DEFAULT_CONFIG, GameConfigurations, GameLevel } from './types/general';
 
-import { startNewGame } from './util/helpers';
+import { getNewGame } from './util/helpers';
 
 import LevelPicker from './components/LevelPicker';
 import Minesweeper from './components/Minesweeper';
@@ -11,7 +11,7 @@ import Rules from './components/Rules';
 
 const App: React.FC = () => {
   // Start a 'BEGINNER'-level game on load
-  const [game, setGame] = useState(startNewGame(DEFAULT_CONFIG));
+  const [game, setGame] = useState(getNewGame(DEFAULT_CONFIG));
 
   const setLevel = (level: GameLevel): void => {
     if (game.config.level === level) {
@@ -20,7 +20,11 @@ const App: React.FC = () => {
     const newConfig = GameConfigurations.filter(
       config => config.level === level
     )[0];
-    setGame(startNewGame(newConfig));
+    setGame(getNewGame(newConfig));
+  };
+
+  const startNewGame = () => {
+    setGame(getNewGame(game.config));
   };
 
   return (
@@ -31,7 +35,7 @@ const App: React.FC = () => {
           <h2 className="mono side-heading margin-bottom-m">Level</h2>
           <LevelPicker currentLevel={game.config.level} setLevel={setLevel} />
         </div>
-        <Minesweeper game={game} />
+        <Minesweeper game={game} startNewGame={startNewGame} />
         <div className="column column-sm">
           <h2 className="mono side-heading margin-bottom-m">Rules</h2>
           <Rules />

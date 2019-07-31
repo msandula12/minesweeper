@@ -13,7 +13,7 @@ type Props = {
 
 const Minesweeper = ({ config }: Props) => {
   return (
-    <div className="flex-column column">
+    <div className="flex-column">
       <div className="fluid flex-row justify-between margin-bottom-m">
         <MineCounter mines={config.mines} />
         <Smiley />

@@ -140,11 +140,12 @@ td {
 }
 
 .column {
-  margin: 0 var(--size-xl);
+  margin: 0 var(--size-m);
 }
 
 .column-sm {
-  width: 20%;
+  width: 275px;
+  max-width: 275px;
 }
 
 .side-heading {

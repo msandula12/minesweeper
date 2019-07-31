@@ -1,17 +1,18 @@
 import React, { useState, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 
-import { IGame } from '../types/general';
+import { GameStatus, IGame } from '../types/general';
 
 import Icon from './Icon';
 
 type Props = {
   game: IGame;
   rowIndex: number;
+  setStatus: (status: GameStatus) => unknown;
   sqIndex: number;
 };
 
-const Square = ({ game, rowIndex, sqIndex }: Props) => {
+const Square = ({ game, rowIndex, setStatus, sqIndex }: Props) => {
   const square = game.grid[rowIndex][sqIndex];
   const [isOpen, setIsOpen] = useState(square.isOpen);
   const [isFlagged, setIsFlagged] = useState(square.isFlagged);
@@ -45,6 +46,7 @@ const Square = ({ game, rowIndex, sqIndex }: Props) => {
       if (square.isMine) {
         console.warn('GAME OVER!');
         setIsLosingMine(true);
+        setStatus(GameStatus.LOST);
       }
     }
   };

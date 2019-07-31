@@ -1,14 +1,15 @@
 import React from 'react';
 
-import { IGame, ISquare } from '../types/general';
+import { GameStatus, IGame, ISquare } from '../types/general';
 
 import Square from './Square';
 
 type Props = {
   game: IGame;
+  setStatus: (status: GameStatus) => unknown;
 };
 
-const Grid = ({ game }: Props) => {
+const Grid = ({ game, setStatus }: Props) => {
   return (
     <div className="grid margin-bottom-m">
       {game.grid.map((row: ISquare[], rowIndex: number) => (
@@ -19,6 +20,7 @@ const Grid = ({ game }: Props) => {
               game={game}
               rowIndex={rowIndex}
               sqIndex={sqIndex}
+              setStatus={setStatus}
             />
           ))}
         </div>

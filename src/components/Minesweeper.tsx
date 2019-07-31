@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IGame } from '../types/general';
+import { GameStatus, IGame } from '../types/general';
 
 import Grid from './Grid';
 import MineCounter from './MineCounter';
@@ -9,10 +9,11 @@ import TimeCounter from './TimeCounter';
 
 type Props = {
   game: IGame;
+  setStatus: (status: GameStatus) => unknown;
   startNewGame: () => unknown;
 };
 
-const Minesweeper = ({ game, startNewGame }: Props) => {
+const Minesweeper = ({ game, setStatus, startNewGame }: Props) => {
   return (
     <div className="flex-column">
       <div className="fluid flex-row justify-between margin-bottom-m">
@@ -20,7 +21,7 @@ const Minesweeper = ({ game, startNewGame }: Props) => {
         <Smiley status={game.status} startNewGame={startNewGame} />
         <TimeCounter />
       </div>
-      <Grid game={game} />{' '}
+      <Grid game={game} setStatus={setStatus} />{' '}
     </div>
   );
 };

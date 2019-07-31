@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
 
-import { DEFAULT_CONFIG, GameConfigurations, GameLevel } from './types/general';
+import {
+  DEFAULT_CONFIG,
+  GameConfigurations,
+  GameLevel,
+  GameStatus
+} from './types/general';
 
 import { getNewGame } from './util/helpers';
 
@@ -27,6 +32,13 @@ const App: React.FC = () => {
     setGame(getNewGame(game.config));
   };
 
+  const setStatus = (status: GameStatus) => {
+    setGame({
+      ...game,
+      status
+    });
+  };
+
   return (
     <>
       <h1 className="center mono font-l margin-bottom-l">Minesweeper</h1>
@@ -35,7 +47,11 @@ const App: React.FC = () => {
           <h2 className="mono side-heading margin-bottom-m">Level</h2>
           <LevelPicker currentLevel={game.config.level} setLevel={setLevel} />
         </div>
-        <Minesweeper game={game} startNewGame={startNewGame} />
+        <Minesweeper
+          game={game}
+          startNewGame={startNewGame}
+          setStatus={setStatus}
+        />
         <div className="column column-sm">
           <h2 className="mono side-heading margin-bottom-m">Rules</h2>
           <Rules />

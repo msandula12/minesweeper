@@ -1,28 +1,26 @@
 import React, { useState } from 'react';
 import './App.css';
 
-import { GameConfigurations, GameLevel } from './types/general';
+import { DEFAULT_CONFIG, GameConfigurations, GameLevel } from './types/general';
+
+import { startNewGame } from './util/helpers';
 
 import LevelPicker from './components/LevelPicker';
 import Minesweeper from './components/Minesweeper';
 import Rules from './components/Rules';
 
 const App: React.FC = () => {
-  // Set 'BEGINNER' as defaultConfig
-  const defaultConfig = GameConfigurations.filter(
-    config => config.level === GameLevel.BEGINNER
-  )[0];
-
-  const [config, setConfig] = useState(defaultConfig);
+  // Start a 'BEGINNER'-level game on load
+  const [game, setGame] = useState(startNewGame(DEFAULT_CONFIG));
 
   const setLevel = (level: GameLevel): void => {
-    if (config.level === level) {
+    if (game.config.level === level) {
       return;
     }
     const newConfig = GameConfigurations.filter(
       config => config.level === level
     )[0];
-    setConfig(newConfig);
+    setGame(startNewGame(newConfig));
   };
 
   return (
@@ -31,9 +29,9 @@ const App: React.FC = () => {
       <div className="flex-row justify-between">
         <div className="column column-sm">
           <h2 className="mono side-heading margin-bottom-m">Level</h2>
-          <LevelPicker currentLevel={config.level} setLevel={setLevel} />
+          <LevelPicker currentLevel={game.config.level} setLevel={setLevel} />
         </div>
-        <Minesweeper config={config} />
+        <Minesweeper game={game} />
         <div className="column column-sm">
           <h2 className="mono side-heading margin-bottom-m">Rules</h2>
           <Rules />

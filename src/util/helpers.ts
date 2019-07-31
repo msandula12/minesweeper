@@ -1,4 +1,11 @@
-import { IGrid, IMineLocation, ISquare } from '../types/general';
+import {
+  GameStatus,
+  IGame,
+  IGameConfiguration,
+  IGrid,
+  IMineLocation,
+  ISquare
+} from '../types/general';
 
 const getMineLocations = (
   rows: number,
@@ -72,4 +79,12 @@ export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
     rowBelow[square.cellIndex + 1]
   ].filter(Boolean);
   return neighbors.filter(neighbor => neighbor.isMine).length;
+};
+
+export const startNewGame = (config: IGameConfiguration): IGame => {
+  return {
+    config,
+    grid: generateGridRows(config.rows, config.columns, config.mines),
+    status: GameStatus.IN_PROGRESS
+  };
 };

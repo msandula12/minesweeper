@@ -66,3 +66,7 @@ export const GameConfigurations: IGameConfiguration[] = [
     rows: 0
   }
 ];
+
+export const DEFAULT_CONFIG = GameConfigurations.filter(
+  config => config.level === GameLevel.BEGINNER
+)[0];

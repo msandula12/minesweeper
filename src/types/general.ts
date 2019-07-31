@@ -1,6 +1,7 @@
 export interface IGame {
   config: IGameConfiguration;
   grid: IGrid;
+  id: string;
   status: GameStatus;
 }
 

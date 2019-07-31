@@ -1,15 +1,18 @@
 import React, { useState, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 
-import { ISquare } from '../types/general';
+import { IGame } from '../types/general';
 
 import Icon from './Icon';
 
 type Props = {
-  square: ISquare;
+  game: IGame;
+  rowIndex: number;
+  sqIndex: number;
 };
 
-const Square = ({ square }: Props) => {
+const Square = ({ game, rowIndex, sqIndex }: Props) => {
+  const square = game.grid[rowIndex][sqIndex];
   const [isOpen, setIsOpen] = useState(square.isOpen);
   const [isFlagged, setIsFlagged] = useState(square.isFlagged);
   const [isLosingMiine, setIsLosingMine] = useState(false);
@@ -60,7 +63,7 @@ const Square = ({ square }: Props) => {
     'align-center',
     'justify-center',
     {
-      exploded: isLosingMiine, // TODO: Should only be the clicked-on mine
+      exploded: isLosingMiine,
       open: isOpen,
       shut: !isOpen || isFlagged
     }

@@ -7,26 +7,6 @@ import {
   ISquare
 } from '../types/general';
 
-const getMineLocations = (
-  rows: number,
-  columns: number,
-  mines: number
-): IMineLocation[] => {
-  const locations: number[] = [];
-  while (locations.length < mines) {
-    const randomLocation = Math.floor(Math.random() * rows * columns);
-    if (!locations.includes(randomLocation)) {
-      locations.push(randomLocation);
-    }
-  }
-  return locations.map(location => {
-    return {
-      row: Math.floor(location / rows),
-      column: location % rows
-    };
-  });
-};
-
 export const generateGridRows = (
   rows: number,
   columns: number,
@@ -64,6 +44,32 @@ export const generateGridRows = (
   return grid;
 };
 
+export const generateRandomID = (): string => {
+  return Math.random()
+    .toString(36)
+    .substr(2, 9);
+};
+
+export const getMineLocations = (
+  rows: number,
+  columns: number,
+  mines: number
+): IMineLocation[] => {
+  const locations: number[] = [];
+  while (locations.length < mines) {
+    const randomLocation = Math.floor(Math.random() * rows * columns);
+    if (!locations.includes(randomLocation)) {
+      locations.push(randomLocation);
+    }
+  }
+  return locations.map(location => {
+    return {
+      row: Math.floor(location / rows),
+      column: location % rows
+    };
+  });
+};
+
 export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
   const rowAbove = grid[square.rowIndex - 1] || [];
   const rowOfSquare = grid[square.rowIndex];
@@ -85,6 +91,7 @@ export const startNewGame = (config: IGameConfiguration): IGame => {
   return {
     config,
     grid: generateGridRows(config.rows, config.columns, config.mines),
+    id: generateRandomID(),
     status: GameStatus.IN_PROGRESS
   };
 };

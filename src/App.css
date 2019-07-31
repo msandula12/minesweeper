@@ -103,7 +103,29 @@ code {
   color: #aaa;
 }
 
+ul {
+  margin: 0;
+}
+
 /* COMPONENT-SPECIFIC */
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  padding: 0 var(--size-xs) var(--size-s);
+}
+
+td {
+  padding: var(--size-s) var(--size-xs);
+}
+
+.row-level:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
 .text-btn {
   opacity: 0.6;
 }

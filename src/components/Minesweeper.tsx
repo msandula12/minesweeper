@@ -19,7 +19,7 @@ const Minesweeper = ({ config }: Props) => {
         <Smiley />
         <TimeCounter />
       </div>
-      <Grid columns={config.columns} rows={config.rows} mines={config.mines} />{' '}
+      <Grid config={config} />{' '}
     </div>
   );
 };

@@ -16,6 +16,9 @@ const App: React.FC = () => {
   const [config, setConfig] = useState(defaultConfig);
 
   const setLevel = (level: GameLevel): void => {
+    if (config.level === level) {
+      return;
+    }
     const newConfig = GameConfigurations.filter(
       config => config.level === level
     )[0];

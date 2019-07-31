@@ -1,17 +1,16 @@
 import React from 'react';
 
-import { ISquare } from '../types/general';
+import { IGameConfiguration, ISquare } from '../types/general';
 import { generateGridRows } from '../util/helpers';
 
 import Square from './Square';
 
 type Props = {
-  columns: number;
-  mines: number;
-  rows: number;
+  config: IGameConfiguration;
 };
 
-const Grid = ({ columns = 10, mines = 5, rows = 10 }: Props) => {
+const Grid = ({ config }: Props) => {
+  const { columns, mines, rows } = config;
   const gridRows = generateGridRows(rows, columns, mines);
 
   return (

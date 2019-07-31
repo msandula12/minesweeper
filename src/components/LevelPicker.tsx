@@ -1,13 +1,13 @@
 import React from 'react';
-import classNames from 'classnames';
 
 import { GameConfigurations, GameLevel } from '../types/general';
 
 type Props = {
   currentLevel: GameLevel;
+  setLevel: (level: GameLevel) => void;
 };
 
-const LevelPicker = ({ currentLevel }: Props) => {
+const LevelPicker = ({ currentLevel, setLevel }: Props) => {
   return (
     <table cellSpacing="0">
       <thead>
@@ -25,6 +25,7 @@ const LevelPicker = ({ currentLevel }: Props) => {
             className={`row-level ${
               config.level === currentLevel ? 'selected' : ''
             }`}
+            onClick={() => setLevel(config.level)}
           >
             <td>{config.level}</td>
             <td className="center">{config.columns}</td>

@@ -126,6 +126,10 @@ td {
   cursor: pointer;
 }
 
+.row-level.selected {
+  background: #ddd;
+}
+
 .text-btn {
   opacity: 0.6;
 }

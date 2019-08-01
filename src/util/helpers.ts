@@ -117,9 +117,9 @@ export const openSafeNeighbors = (square: ISquare, grid: IGrid): IGrid => {
   const newGrid = [...grid];
   const { cellIndex, rowIndex } = square;
 
-  const rowAbove = newGrid[rowIndex + 1] || [];
-  const rowOfSquare = newGrid[rowIndex + 1] || [];
-  const rowBelow = newGrid[rowIndex - 1] || [];
+  const rowAbove = grid[rowIndex - 1] || [];
+  const rowOfSquare = grid[rowIndex] || [];
+  const rowBelow = grid[rowIndex + 1] || [];
 
   const neighbors = [
     rowAbove[cellIndex],
@@ -134,6 +134,5 @@ export const openSafeNeighbors = (square: ISquare, grid: IGrid): IGrid => {
       openSafeNeighbors(neighbor, newGrid);
     }
   });
-  console.log('newGrid: ', newGrid);
   return newGrid;
 };

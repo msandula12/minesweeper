@@ -1,7 +1,8 @@
 import React, { useState, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 
-import { GameStatus, IGame } from '../types/general';
+import { GameStatus, IGame, IGrid } from '../types/general';
+import { openSafeNeighbors } from '../util/helpers';
 
 import Icon from './Icon';
 
@@ -10,9 +11,10 @@ type Props = {
   rowIndex: number;
   setStatus: (status: GameStatus) => unknown;
   sqIndex: number;
+  updateGrid: (grid: IGrid) => unknown;
 };
 
-const Square = ({ game, rowIndex, setStatus, sqIndex }: Props) => {
+const Square = ({ game, rowIndex, setStatus, sqIndex, updateGrid }: Props) => {
   const square = game.grid[rowIndex][sqIndex];
   const [isOpen, setIsOpen] = useState(square.isOpen);
   const [isFlagged, setIsFlagged] = useState(square.isFlagged);
@@ -47,6 +49,9 @@ const Square = ({ game, rowIndex, setStatus, sqIndex }: Props) => {
         console.warn('GAME OVER!');
         setIsLosingMine(true);
         setStatus(GameStatus.LOST);
+      } else if (square.neighborsWithMines === 0) {
+        const updatedGrid = openSafeNeighbors(square, game.grid);
+        updateGrid(updatedGrid);
       }
     }
   };

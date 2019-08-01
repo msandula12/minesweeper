@@ -79,6 +79,19 @@ export const getNewGame = (config: IGameConfiguration): IGame => {
   };
 };
 
+export const updateGame = (
+  config: IGameConfiguration,
+  grid?: IGrid,
+  status?: GameStatus
+): IGame => {
+  return {
+    config,
+    grid: grid || generateGridRows(config.rows, config.columns, config.mines),
+    id: generateRandomID(),
+    status: status || GameStatus.IN_PROGRESS
+  };
+};
+
 export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
   const { cellIndex, rowIndex } = square;
 
@@ -100,12 +113,13 @@ export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
   return neighbors.filter(neighbor => neighbor.hasMine).length;
 };
 
-export const openSafeNeighbors = (square: ISquare, grid: IGrid) => {
+export const openSafeNeighbors = (square: ISquare, grid: IGrid): IGrid => {
+  const newGrid = [...grid];
   const { cellIndex, rowIndex } = square;
 
-  const rowAbove = grid[rowIndex + 1] || [];
-  const rowOfSquare = grid[rowIndex + 1] || [];
-  const rowBelow = grid[rowIndex - 1] || [];
+  const rowAbove = newGrid[rowIndex + 1] || [];
+  const rowOfSquare = newGrid[rowIndex + 1] || [];
+  const rowBelow = newGrid[rowIndex - 1] || [];
 
   const neighbors = [
     rowAbove[cellIndex],
@@ -117,7 +131,9 @@ export const openSafeNeighbors = (square: ISquare, grid: IGrid) => {
   neighbors.forEach(neighbor => {
     neighbor.isOpen = true;
     if (neighbor.neighborsWithMines === 0) {
-      openSafeNeighbors(neighbor, grid);
+      openSafeNeighbors(neighbor, newGrid);
     }
   });
+  console.log('newGrid: ', newGrid);
+  return newGrid;
 };

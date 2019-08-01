@@ -1,26 +1,28 @@
 import React from 'react';
 
-import { GameStatus, IGame, ISquare } from '../types/general';
+import { GameStatus, IGame, IGrid, ISquare } from '../types/general';
 
 import Square from './Square';
 
 type Props = {
   game: IGame;
   setStatus: (status: GameStatus) => unknown;
+  updateGrid: (grid: IGrid) => unknown;
 };
 
-const Grid = ({ game, setStatus }: Props) => {
+const Grid = ({ game, setStatus, updateGrid }: Props) => {
   return (
     <div className="grid margin-bottom-m">
       {game.grid.map((row: ISquare[], rowIndex: number) => (
         <div className="flex-row justify-center" key={`${game.id}-${rowIndex}`}>
           {row.map((_: ISquare, sqIndex: number) => (
             <Square
-              key={`${game.id}-${rowIndex}-${sqIndex}`}
               game={game}
+              key={`${game.id}-${rowIndex}-${sqIndex}`}
               rowIndex={rowIndex}
-              sqIndex={sqIndex}
               setStatus={setStatus}
+              sqIndex={sqIndex}
+              updateGrid={updateGrid}
             />
           ))}
         </div>

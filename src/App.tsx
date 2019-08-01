@@ -5,10 +5,11 @@ import {
   DEFAULT_CONFIG,
   GameConfigurations,
   GameLevel,
-  GameStatus
+  GameStatus,
+  IGrid
 } from './types/general';
 
-import { getNewGame } from './util/helpers';
+import { getNewGame, updateGame } from './util/helpers';
 
 import LevelPicker from './components/LevelPicker';
 import Minesweeper from './components/Minesweeper';
@@ -39,6 +40,10 @@ const App: React.FC = () => {
     });
   };
 
+  const updateGrid = (grid: IGrid) => {
+    setGame(updateGame(game.config, grid));
+  };
+
   return (
     <>
       <h1 className="center mono font-l margin-bottom-l">Minesweeper</h1>
@@ -49,8 +54,9 @@ const App: React.FC = () => {
         </div>
         <Minesweeper
           game={game}
-          startNewGame={startNewGame}
           setStatus={setStatus}
+          startNewGame={startNewGame}
+          updateGrid={updateGrid}
         />
         <div className="column column-sm">
           <h2 className="mono side-heading margin-bottom-m">Rules</h2>

@@ -20,7 +20,7 @@ export const generateGridRows = (
       const basicSquare: ISquare = {
         cellIndex,
         isFlagged: false,
-        isMine: mineLocations.some(
+        hasMine: mineLocations.some(
           mine => mine.row === rowIndex && mine.column === cellIndex
         ),
         isOpen: false,
@@ -35,7 +35,7 @@ export const generateGridRows = (
   // Once mines are in place, figure out the numberOfNeighbors each non-mine has
   grid.forEach(row => {
     row.forEach(square => {
-      if (!square.isMine) {
+      if (!square.hasMine) {
         square.neighborsWithMines = getNumberOfNeighbors(square, grid);
       }
     });
@@ -93,5 +93,5 @@ export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
     rowBelow[square.cellIndex],
     rowBelow[square.cellIndex + 1]
   ].filter(Boolean);
-  return neighbors.filter(neighbor => neighbor.isMine).length;
+  return neighbors.filter(neighbor => neighbor.hasMine).length;
 };

@@ -28,7 +28,7 @@ const Square = ({ game, rowIndex, setStatus, sqIndex }: Props) => {
       return null;
     } else if (isFlagged) {
       return <Icon name="flag-checkered" />;
-    } else if (square.isMine) {
+    } else if (square.hasMine) {
       return <Icon name="bomb" />;
     } else if (square.neighborsWithMines) {
       const numOfNeighbors = getNumbeOfNeighbors(square.neighborsWithMines);
@@ -43,7 +43,7 @@ const Square = ({ game, rowIndex, setStatus, sqIndex }: Props) => {
     if (!isOpen && !isFlagged) {
       setIsOpen(true);
 
-      if (square.isMine) {
+      if (square.hasMine) {
         console.warn('GAME OVER!');
         setIsLosingMine(true);
         setStatus(GameStatus.LOST);

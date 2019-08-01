@@ -80,19 +80,23 @@ export const getNewGame = (config: IGameConfiguration): IGame => {
 };
 
 export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
-  const rowAbove = grid[square.rowIndex - 1] || [];
-  const rowOfSquare = grid[square.rowIndex];
-  const rowBelow = grid[square.rowIndex + 1] || [];
+  const { cellIndex, rowIndex } = square;
+
+  const rowAbove = grid[rowIndex - 1] || [];
+  const rowOfSquare = grid[rowIndex] || [];
+  const rowBelow = grid[rowIndex + 1] || [];
+
   const neighbors = [
-    rowAbove[square.cellIndex - 1],
-    rowAbove[square.cellIndex],
-    rowAbove[square.cellIndex + 1],
-    rowOfSquare[square.cellIndex - 1],
-    rowOfSquare[square.cellIndex + 1],
-    rowBelow[square.cellIndex - 1],
-    rowBelow[square.cellIndex],
-    rowBelow[square.cellIndex + 1]
+    rowAbove[cellIndex - 1],
+    rowAbove[cellIndex],
+    rowAbove[cellIndex + 1],
+    rowOfSquare[cellIndex - 1],
+    rowOfSquare[cellIndex + 1],
+    rowBelow[cellIndex - 1],
+    rowBelow[cellIndex],
+    rowBelow[cellIndex + 1]
   ].filter(Boolean);
+
   return neighbors.filter(neighbor => neighbor.hasMine).length;
 };
 
@@ -100,13 +104,13 @@ export const openSafeNeighbors = (square: ISquare, grid: IGrid) => {
   const { cellIndex, rowIndex } = square;
 
   const rowAbove = grid[rowIndex + 1] || [];
-  const currentRow = grid[rowIndex + 1] || [];
+  const rowOfSquare = grid[rowIndex + 1] || [];
   const rowBelow = grid[rowIndex - 1] || [];
 
   const neighbors = [
     rowAbove[cellIndex],
-    currentRow[cellIndex - 1],
-    currentRow[cellIndex + 1],
+    rowOfSquare[cellIndex - 1],
+    rowOfSquare[cellIndex + 1],
     rowBelow[cellIndex]
   ].filter(neighbor => neighbor && !neighbor.isOpen && !neighbor.hasMine);
 

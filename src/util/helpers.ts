@@ -95,3 +95,25 @@ export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
   ].filter(Boolean);
   return neighbors.filter(neighbor => neighbor.hasMine).length;
 };
+
+export const openSafeNeighbors = (square: ISquare, grid: IGrid) => {
+  const { cellIndex, rowIndex } = square;
+
+  const rowAbove = grid[rowIndex + 1] || [];
+  const currentRow = grid[rowIndex + 1] || [];
+  const rowBelow = grid[rowIndex - 1] || [];
+
+  const neighbors = [
+    rowAbove[cellIndex],
+    currentRow[cellIndex - 1],
+    currentRow[cellIndex + 1],
+    rowBelow[cellIndex]
+  ].filter(neighbor => neighbor && !neighbor.isOpen && !neighbor.hasMine);
+
+  neighbors.forEach(neighbor => {
+    neighbor.isOpen = true;
+    if (neighbor.neighborsWithMines === 0) {
+      openSafeNeighbors(neighbor, grid);
+    }
+  });
+};

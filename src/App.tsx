@@ -16,8 +16,8 @@ import Minesweeper from './components/Minesweeper';
 import Rules from './components/Rules';
 
 const App: React.FC = () => {
-  // Start a 'BEGINNER'-level game on load
   const [game, setGame] = useState(getNewGame(DEFAULT_CONFIG));
+  const [flaggedSquares, setFlaggedSquares] = useState(EMPTY_STRING_ARRAY);
   const [openSquares, setOpenSquares] = useState(EMPTY_STRING_ARRAY);
 
   const setLevel = (level: GameLevel): void => {
@@ -31,6 +31,7 @@ const App: React.FC = () => {
   };
 
   const startNewGame = () => {
+    setFlaggedSquares(EMPTY_STRING_ARRAY);
     setOpenSquares(EMPTY_STRING_ARRAY);
     setGame(getNewGame(game.config));
   };
@@ -40,6 +41,10 @@ const App: React.FC = () => {
       ...game,
       status
     });
+  };
+
+  const updateFlaggedSquares = (ids: string[]) => {
+    setFlaggedSquares(ids);
   };
 
   const updateOpenSquares = (ids: string[]) => {
@@ -60,6 +65,8 @@ const App: React.FC = () => {
           setOpenSquares={updateOpenSquares}
           setStatus={setStatus}
           startNewGame={startNewGame}
+          flaggedSquares={flaggedSquares}
+          setFlaggedSquares={updateFlaggedSquares}
         />
         <div className="column column-sm">
           <h2 className="mono side-heading margin-bottom-m">Rules</h2>

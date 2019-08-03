@@ -8,23 +8,27 @@ import { getSafeNeighbors } from '../utils/helpers';
 import Icon from './Icon';
 
 type Props = {
+  flaggedSquares: string[];
   grid: IGrid;
   openSquares: string[];
+  setFlaggedSquares: (ids: string[]) => unknown;
   setOpenSquares: (ids: string[]) => unknown;
   setStatus: (status: GameStatus) => unknown;
   square: ISquare;
 };
 
 const Square = ({
+  flaggedSquares,
   grid,
   openSquares,
+  setFlaggedSquares,
   setOpenSquares,
   setStatus,
   square
 }: Props) => {
-  const [isFlagged, setIsFlagged] = useState(square.isFlagged);
   const [isLosingMiine, setIsLosingMine] = useState(false);
 
+  const isFlagged = flaggedSquares.includes(square.id);
   const isOpen = openSquares.includes(ALL) || openSquares.includes(square.id);
 
   const getNumbeOfNeighbors = (neighbors: number) => {
@@ -67,8 +71,15 @@ const Square = ({
   const toggleFlagged = (e: SyntheticEvent) => {
     e.preventDefault();
     e.persist();
-    if (!isOpen) {
-      setIsFlagged(!isFlagged);
+    if (isOpen) {
+      return;
+    }
+    if (isFlagged) {
+      setFlaggedSquares(
+        flaggedSquares.filter(flagged => flagged !== square.id)
+      );
+    } else {
+      setFlaggedSquares([...flaggedSquares, square.id]);
     }
   };
 

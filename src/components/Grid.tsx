@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { GameStatus } from '../constants';
-import { IGame, ISquare } from '../types';
+import { IGame, IGameConfiguration, ISquare } from '../types';
 
 import Square from './Square';
 
 type Props = {
+  config: IGameConfiguration;
   flaggedSquares: string[];
   game: IGame;
   openSquares: string[];
@@ -15,6 +16,7 @@ type Props = {
 };
 
 const Grid = ({
+  config,
   flaggedSquares,
   game,
   openSquares,
@@ -28,6 +30,7 @@ const Grid = ({
         <div className="flex-row justify-center" key={`${game.id}-${rowIndex}`}>
           {row.map((square: ISquare, sqIndex: number) => (
             <Square
+              config={config}
               flaggedSquares={flaggedSquares}
               grid={game.grid}
               key={`${game.id}-${rowIndex}-${sqIndex}`}

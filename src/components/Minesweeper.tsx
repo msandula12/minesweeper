@@ -38,6 +38,7 @@ const Minesweeper = ({
         <TimeCounter />
       </div>
       <Grid
+        config={game.config}
         flaggedSquares={flaggedSquares}
         game={game}
         openSquares={openSquares}

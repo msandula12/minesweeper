@@ -2,12 +2,13 @@ import React, { useState, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 
 import { ALL, GameStatus } from '../constants';
-import { IGrid, ISquare } from '../types';
+import { IGameConfiguration, IGrid, ISquare } from '../types';
 import { getSafeNeighbors, hasWonGame } from '../utils/helpers';
 
 import Icon from './Icon';
 
 type Props = {
+  config: IGameConfiguration;
   flaggedSquares: string[];
   grid: IGrid;
   openSquares: string[];
@@ -18,6 +19,7 @@ type Props = {
 };
 
 const Square = ({
+  config,
   flaggedSquares,
   grid,
   openSquares,
@@ -54,8 +56,6 @@ const Square = ({
 
   const openSquare = () => {
     if (!isOpen && !isFlagged) {
-      setOpenSquares([...openSquares, square.id]);
-
       if (square.hasMine) {
         console.warn('GAME OVER!');
         setIsLosingMine(true);
@@ -72,11 +72,23 @@ const Square = ({
           flaggedSquares
         );
         setOpenSquares([...openSquares, square.id, ...safeNeighbors]);
+      } else {
+        setOpenSquares([...openSquares, square.id]);
       }
 
-      // if (hasWonGame(grid, flaggedSquares, openSquares)) {
-      //   console.warn('YOU WON!');
-      // }
+      console.log('cells: ', config.rows * config.columns);
+      console.log('flaggedSquares: ', flaggedSquares.length);
+      console.log('openSquares: ', openSquares.length);
+      console.log('mines: ', config.mines);
+
+      console.log(
+        'hasWonGame: ',
+        hasWonGame(config, flaggedSquares, openSquares)
+      );
+
+      if (hasWonGame(config, flaggedSquares, openSquares)) {
+        console.warn('YOU WON!');
+      }
     }
   };
 

@@ -14,6 +14,7 @@ export enum GameLevel {
 }
 
 export const ALL = '*';
+export const EMPTY_STRING_ARRAY: string[] = [];
 
 export const GameConfigurations: IGameConfiguration[] = [
   {

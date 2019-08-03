@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { GameStatus } from '../constants';
 import { IGame, ISquare } from '../types';
@@ -7,13 +7,12 @@ import Square from './Square';
 
 type Props = {
   game: IGame;
+  openSquares: string[];
+  setOpenSquares: (ids: string[]) => unknown;
   setStatus: (status: GameStatus) => unknown;
 };
 
-const Grid = ({ game, setStatus }: Props) => {
-  const EMPTY_ARRAY: string[] = [];
-  const [openSquares, setOpenSquares] = useState(EMPTY_ARRAY);
-
+const Grid = ({ game, openSquares, setStatus, setOpenSquares }: Props) => {
   const updateOpenSquares = (ids: string[]) => {
     setOpenSquares(ids);
   };

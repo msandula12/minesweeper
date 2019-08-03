@@ -10,11 +10,19 @@ import TimeCounter from './TimeCounter';
 
 type Props = {
   game: IGame;
+  openSquares: string[];
+  setOpenSquares: (ids: string[]) => unknown;
   setStatus: (status: GameStatus) => unknown;
   startNewGame: () => unknown;
 };
 
-const Minesweeper = ({ game, setStatus, startNewGame }: Props) => {
+const Minesweeper = ({
+  game,
+  openSquares,
+  setOpenSquares,
+  setStatus,
+  startNewGame
+}: Props) => {
   return (
     <div className="flex-column">
       <div className="fluid flex-row justify-between margin-bottom-m">
@@ -22,7 +30,12 @@ const Minesweeper = ({ game, setStatus, startNewGame }: Props) => {
         <Smiley status={game.status} startNewGame={startNewGame} />
         <TimeCounter />
       </div>
-      <Grid game={game} setStatus={setStatus} />{' '}
+      <Grid
+        game={game}
+        openSquares={openSquares}
+        setOpenSquares={setOpenSquares}
+        setStatus={setStatus}
+      />{' '}
     </div>
   );
 };

@@ -3,6 +3,7 @@ import './App.css';
 
 import {
   DEFAULT_CONFIG,
+  EMPTY_STRING_ARRAY,
   GameConfigurations,
   GameLevel,
   GameStatus
@@ -17,6 +18,7 @@ import Rules from './components/Rules';
 const App: React.FC = () => {
   // Start a 'BEGINNER'-level game on load
   const [game, setGame] = useState(getNewGame(DEFAULT_CONFIG));
+  const [openSquares, setOpenSquares] = useState(EMPTY_STRING_ARRAY);
 
   const setLevel = (level: GameLevel): void => {
     if (game.config.level === level) {
@@ -29,6 +31,7 @@ const App: React.FC = () => {
   };
 
   const startNewGame = () => {
+    setOpenSquares(EMPTY_STRING_ARRAY);
     setGame(getNewGame(game.config));
   };
 
@@ -37,6 +40,10 @@ const App: React.FC = () => {
       ...game,
       status
     });
+  };
+
+  const updateOpenSquares = (ids: string[]) => {
+    setOpenSquares(ids);
   };
 
   return (
@@ -49,6 +56,8 @@ const App: React.FC = () => {
         </div>
         <Minesweeper
           game={game}
+          openSquares={openSquares}
+          setOpenSquares={updateOpenSquares}
           setStatus={setStatus}
           startNewGame={startNewGame}
         />

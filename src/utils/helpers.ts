@@ -137,3 +137,12 @@ export const getSafeNeighbors = (
   _getSafeNeighbors(square, grid);
   return safeNeighbors;
 };
+
+export const hasWonGame = (
+  config: IGameConfiguration,
+  flaggedSquares: string[],
+  openSquares: string[]
+): boolean => {
+  const { columns, mines, rows } = config;
+  return columns * rows === flaggedSquares.length + openSquares.length + mines;
+};

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { ALL, GameStatus } from '../constants';
 import { IGrid, ISquare } from '../types';
-import { getSafeNeighbors } from '../utils/helpers';
+import { getSafeNeighbors, hasWonGame } from '../utils/helpers';
 
 import Icon from './Icon';
 
@@ -61,7 +61,10 @@ const Square = ({
         setIsLosingMine(true);
         setStatus(GameStatus.LOST);
         setOpenSquares([ALL]);
-      } else if (square.neighborsWithMines === 0) {
+        return;
+      }
+
+      if (square.neighborsWithMines === 0) {
         const safeNeighbors = getSafeNeighbors(
           square,
           grid,
@@ -70,6 +73,10 @@ const Square = ({
         );
         setOpenSquares([...openSquares, square.id, ...safeNeighbors]);
       }
+
+      // if (hasWonGame(grid, flaggedSquares, openSquares)) {
+      //   console.warn('YOU WON!');
+      // }
     }
   };
 

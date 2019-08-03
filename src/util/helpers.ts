@@ -79,19 +79,6 @@ export const getNewGame = (config: IGameConfiguration): IGame => {
   };
 };
 
-export const updateGame = (
-  config: IGameConfiguration,
-  grid?: IGrid,
-  status?: GameStatus
-): IGame => {
-  return {
-    config,
-    grid: grid || generateGridRows(config.rows, config.columns, config.mines),
-    id: generateRandomID(),
-    status: status || GameStatus.IN_PROGRESS
-  };
-};
-
 export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
   const { cellIndex, rowIndex } = square;
 

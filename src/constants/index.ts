@@ -34,13 +34,13 @@ export const GameConfigurations: IGameConfiguration[] = [
     level: GameLevel.EXPERT,
     mines: 99,
     rows: 16
-  },
-  {
-    columns: 0,
-    level: GameLevel.CUSTOM,
-    mines: 0,
-    rows: 0
   }
+  // {
+  //   columns: 0,
+  //   level: GameLevel.CUSTOM,
+  //   mines: 0,
+  //   rows: 0
+  // }
 ];
 
 export const DEFAULT_CONFIG = GameConfigurations.filter(

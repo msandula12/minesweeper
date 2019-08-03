@@ -1,13 +1,21 @@
 import React from 'react';
+import classNames from 'classnames';
 
 type Props = {
   count: number;
 };
 
 const Counter = ({ count }: Props) => {
-  const paddedCount = String(count).padStart(3, '0');
+  const paddedCount =
+    count < 0
+      ? `-${String(Math.abs(count)).padStart(3, '0')}`
+      : String(count).padStart(3, '0');
 
-  return <span className="mono font-l">{paddedCount}</span>;
+  const counterCls = classNames('mono', 'font-l', {
+    danger: count < 0
+  });
+
+  return <span className={counterCls}>{paddedCount}</span>;
 };
 
 export default Counter;

@@ -20,7 +20,7 @@ export const GameConfigurations: IGameConfiguration[] = [
   {
     columns: 9,
     level: GameLevel.BEGINNER,
-    mines: 10,
+    mines: 2,
     rows: 9
   },
   {

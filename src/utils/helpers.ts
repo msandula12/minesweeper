@@ -120,10 +120,10 @@ export const getSafeNeighbors = (
     ].filter(
       n =>
         n &&
+        !n.hasMine &&
         !openSquares.includes(n.id) &&
         !flaggedSquares.includes(n.id) &&
-        !safeNeighbors.includes(n.id) &&
-        !n.hasMine
+        !safeNeighbors.includes(n.id)
     );
 
     neighbors.forEach(neighbor => {

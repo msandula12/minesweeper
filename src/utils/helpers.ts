@@ -100,6 +100,7 @@ export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
 export const getSafeNeighbors = (
   square: ISquare,
   grid: IGrid,
+  openSquares: string[],
   flaggedSquares: string[]
 ): string[] => {
   const safeNeighbors: string[] = [];
@@ -116,12 +117,17 @@ export const getSafeNeighbors = (
       rowOfSquare[cellIndex - 1],
       rowOfSquare[cellIndex + 1],
       rowBelow[cellIndex]
-    ].filter(n => n && !safeNeighbors.includes(n.id) && !n.hasMine);
+    ].filter(
+      n =>
+        n &&
+        !openSquares.includes(n.id) &&
+        !flaggedSquares.includes(n.id) &&
+        !safeNeighbors.includes(n.id) &&
+        !n.hasMine
+    );
 
     neighbors.forEach(neighbor => {
-      if (!flaggedSquares.includes(neighbor.id)) {
-        safeNeighbors.push(neighbor.id);
-      }
+      safeNeighbors.push(neighbor.id);
       if (neighbor.neighborsWithMines === 0) {
         _getSafeNeighbors(neighbor, grid);
       }

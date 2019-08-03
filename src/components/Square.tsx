@@ -62,7 +62,7 @@ const Square = ({
         setStatus(GameStatus.LOST);
         setOpenSquares([ALL]);
       } else if (square.neighborsWithMines === 0) {
-        const safeNeighbors = getSafeNeighbors(square, grid);
+        const safeNeighbors = getSafeNeighbors(square, grid, flaggedSquares);
         setOpenSquares([...openSquares, square.id, ...safeNeighbors]);
       }
     }

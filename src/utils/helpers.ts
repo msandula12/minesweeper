@@ -7,11 +7,8 @@ import {
   ISquare
 } from '../types';
 
-export const generateGridRows = (
-  rows: number,
-  columns: number,
-  mines: number
-): IGrid => {
+export const generateGridRows = (config: IGameConfiguration): IGrid => {
+  const { columns, mines, rows } = config;
   const mineLocations = getMineLocations(rows, columns, mines);
   const grid: IGrid = [];
   for (let rowIndex = 0; rowIndex < rows; rowIndex++) {
@@ -64,8 +61,8 @@ export const getMineLocations = (
   }
   return locations.map(location => {
     return {
-      row: Math.floor(location / rows),
-      column: location % rows
+      column: Math.floor(location / rows),
+      row: location % columns
     };
   });
 };
@@ -73,7 +70,7 @@ export const getMineLocations = (
 export const getNewGame = (config: IGameConfiguration): IGame => {
   return {
     config,
-    grid: generateGridRows(config.rows, config.columns, config.mines),
+    grid: generateGridRows(config),
     id: generateRandomID(),
     status: GameStatus.IN_PROGRESS
   };

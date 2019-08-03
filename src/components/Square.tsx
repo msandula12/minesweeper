@@ -68,8 +68,8 @@ const Square = ({
         const safeNeighbors = getSafeNeighbors(
           square,
           grid,
-          openSquares,
-          flaggedSquares
+          flaggedSquares,
+          openSquares
         );
         setOpenSquares([...openSquares, square.id, ...safeNeighbors]);
       } else {

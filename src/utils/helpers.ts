@@ -100,8 +100,8 @@ export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
 export const getSafeNeighbors = (
   square: ISquare,
   grid: IGrid,
-  openSquares: string[],
-  flaggedSquares: string[]
+  flaggedSquares: string[],
+  openSquares: string[]
 ): string[] => {
   const safeNeighbors: string[] = [];
 

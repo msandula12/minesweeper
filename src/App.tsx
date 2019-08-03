@@ -8,7 +8,7 @@ import {
   GameStatus
 } from './types/general';
 
-import { getNewGame } from './util/helpers';
+import { getNewGame } from './utils/helpers';
 
 import LevelPicker from './components/LevelPicker';
 import Minesweeper from './components/Minesweeper';

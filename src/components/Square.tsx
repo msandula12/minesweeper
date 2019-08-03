@@ -2,7 +2,7 @@ import React, { useState, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 
 import { ALL, GameStatus, IGrid, ISquare } from '../types/general';
-import { getSafeNeighbors } from '../util/helpers';
+import { getSafeNeighbors } from '../utils/helpers';
 
 import Icon from './Icon';
 

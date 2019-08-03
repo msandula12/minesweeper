@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { GameStatus, IGame } from '../types/general';
+import { GameStatus } from '../constants';
+import { IGame } from '../types';
 
 import Grid from './Grid';
 import MineCounter from './MineCounter';

@@ -6,7 +6,7 @@ import {
   GameConfigurations,
   GameLevel,
   GameStatus
-} from './types/general';
+} from './constants';
 
 import { getNewGame } from './utils/helpers';
 

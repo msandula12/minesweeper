@@ -1,7 +1,8 @@
 import React, { useState, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 
-import { ALL, GameStatus, IGrid, ISquare } from '../types/general';
+import { ALL, GameStatus } from '../constants';
+import { IGrid, ISquare } from '../types';
 import { getSafeNeighbors } from '../utils/helpers';
 
 import Icon from './Icon';

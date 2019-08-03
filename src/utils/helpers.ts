@@ -1,11 +1,11 @@
+import { GameStatus } from '../constants';
 import {
-  GameStatus,
   IGame,
   IGameConfiguration,
   IGrid,
   IMineLocation,
   ISquare
-} from '../types/general';
+} from '../types';
 
 export const generateGridRows = (
   rows: number,

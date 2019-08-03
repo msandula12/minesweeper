@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GameConfigurations, GameLevel } from '../types/general';
+import { GameConfigurations, GameLevel } from '../constants';
 
 type Props = {
   currentLevel: GameLevel;

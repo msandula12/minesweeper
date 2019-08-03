@@ -2,7 +2,7 @@ import React from 'react';
 
 import Icon from './Icon';
 
-import { GameStatus } from '../types/general';
+import { GameStatus } from '../constants';
 
 type Props = {
   status: GameStatus;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import { GameStatus, IGame, ISquare } from '../types/general';
+import { GameStatus } from '../constants';
+import { IGame, ISquare } from '../types';
 
 import Square from './Square';
 

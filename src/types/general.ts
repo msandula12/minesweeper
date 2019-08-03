@@ -41,6 +41,8 @@ export enum GameLevel {
   CUSTOM = 'Custom'
 }
 
+export const ALL = '*';
+
 export const GameConfigurations: IGameConfiguration[] = [
   {
     columns: 9,

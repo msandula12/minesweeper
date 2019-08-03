@@ -1,7 +1,7 @@
 import React, { useState, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 
-import { GameStatus, IGrid, ISquare } from '../types/general';
+import { ALL, GameStatus, IGrid, ISquare } from '../types/general';
 import { getSafeNeighbors } from '../util/helpers';
 
 import Icon from './Icon';
@@ -24,7 +24,7 @@ const Square = ({
   const [isFlagged, setIsFlagged] = useState(square.isFlagged);
   const [isLosingMiine, setIsLosingMine] = useState(false);
 
-  const isOpen = openSquares.includes(square.id);
+  const isOpen = openSquares.includes(ALL) || openSquares.includes(square.id);
 
   const getNumbeOfNeighbors = (neighbors: number) => {
     const digitsAsWords = ['one', 'two', 'three', 'four'];
@@ -55,6 +55,7 @@ const Square = ({
         console.warn('GAME OVER!');
         setIsLosingMine(true);
         setStatus(GameStatus.LOST);
+        setOpenSquares([ALL]);
       } else if (square.neighborsWithMines === 0) {
         const safeNeighbors = getSafeNeighbors(square, grid);
         setOpenSquares([...openSquares, square.id, ...safeNeighbors]);

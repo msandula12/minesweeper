@@ -17,8 +17,8 @@ export interface IGameConfiguration {
 export interface ISquare {
   cellIndex: number;
   hasMine: boolean;
+  id: string;
   isFlagged: boolean;
-  isOpen: boolean;
   neighborsWithMines: number;
   rowIndex: number;
 }

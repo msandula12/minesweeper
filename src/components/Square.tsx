@@ -2,23 +2,34 @@ import React, { useState, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 
 import { GameStatus, IGame, IGrid } from '../types/general';
-import { openSafeNeighbors } from '../util/helpers';
+import { getSafeNeighbors } from '../util/helpers';
 
 import Icon from './Icon';
 
 type Props = {
   game: IGame;
+  openSquares: string[];
   rowIndex: number;
   setStatus: (status: GameStatus) => unknown;
   sqIndex: number;
   updateGrid: (grid: IGrid) => unknown;
+  setOpenSquares: (ids: string[]) => unknown;
 };
 
-const Square = ({ game, rowIndex, setStatus, sqIndex, updateGrid }: Props) => {
+const Square = ({
+  game,
+  openSquares,
+  rowIndex,
+  setStatus,
+  sqIndex,
+  setOpenSquares
+}: Props) => {
   const square = game.grid[rowIndex][sqIndex];
-  const [isOpen, setIsOpen] = useState(square.isOpen);
+
   const [isFlagged, setIsFlagged] = useState(square.isFlagged);
   const [isLosingMiine, setIsLosingMine] = useState(false);
+
+  const isOpen = openSquares.includes(square.id);
 
   const getNumbeOfNeighbors = (neighbors: number) => {
     const digitsAsWords = ['one', 'two', 'three', 'four'];
@@ -43,15 +54,16 @@ const Square = ({ game, rowIndex, setStatus, sqIndex, updateGrid }: Props) => {
 
   const openSquare = () => {
     if (!isOpen && !isFlagged) {
-      setIsOpen(true);
+      // setIsOpen(true);
+      setOpenSquares([...openSquares, square.id]);
 
       if (square.hasMine) {
         console.warn('GAME OVER!');
         setIsLosingMine(true);
         setStatus(GameStatus.LOST);
       } else if (square.neighborsWithMines === 0) {
-        const updatedGrid = openSafeNeighbors(square, game.grid);
-        updateGrid(updatedGrid);
+        const safeNeighbors = getSafeNeighbors(square, game.grid);
+        setOpenSquares([...openSquares, square.id, ...safeNeighbors]);
       }
     }
   };

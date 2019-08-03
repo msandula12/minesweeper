@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { GameStatus, IGame, IGrid, ISquare } from '../types/general';
 
@@ -11,6 +11,13 @@ type Props = {
 };
 
 const Grid = ({ game, setStatus, updateGrid }: Props) => {
+  const EMPTY_ARRAY: string[] = [];
+  const [openSquares, setOpenSquares] = useState(EMPTY_ARRAY);
+
+  const updateOpenSquares = (ids: string[]) => {
+    setOpenSquares(ids);
+  };
+
   return (
     <div className="grid margin-bottom-m">
       {game.grid.map((row: ISquare[], rowIndex: number) => (
@@ -19,6 +26,8 @@ const Grid = ({ game, setStatus, updateGrid }: Props) => {
             <Square
               game={game}
               key={`${game.id}-${rowIndex}-${sqIndex}`}
+              openSquares={openSquares}
+              setOpenSquares={updateOpenSquares}
               rowIndex={rowIndex}
               setStatus={setStatus}
               sqIndex={sqIndex}

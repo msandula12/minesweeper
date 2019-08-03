@@ -23,7 +23,7 @@ export const generateGridRows = (
         hasMine: mineLocations.some(
           mine => mine.row === rowIndex && mine.column === cellIndex
         ),
-        isOpen: false,
+        id: generateRandomID(),
         neighborsWithMines: 0,
         rowIndex
       };
@@ -113,26 +113,31 @@ export const getNumberOfNeighbors = (square: ISquare, grid: IGrid): number => {
   return neighbors.filter(neighbor => neighbor.hasMine).length;
 };
 
-export const openSafeNeighbors = (square: ISquare, grid: IGrid): IGrid => {
-  const newGrid = [...grid];
-  const { cellIndex, rowIndex } = square;
+export const getSafeNeighbors = (square: ISquare, grid: IGrid): string[] => {
+  const safeNeighbors: string[] = [];
 
-  const rowAbove = grid[rowIndex - 1] || [];
-  const rowOfSquare = grid[rowIndex] || [];
-  const rowBelow = grid[rowIndex + 1] || [];
+  const _getSafeNeighbors = (sq: ISquare, grid: IGrid) => {
+    const { cellIndex, rowIndex } = sq;
 
-  const neighbors = [
-    rowAbove[cellIndex],
-    rowOfSquare[cellIndex - 1],
-    rowOfSquare[cellIndex + 1],
-    rowBelow[cellIndex]
-  ].filter(neighbor => neighbor && !neighbor.isOpen && !neighbor.hasMine);
+    const rowAbove = grid[rowIndex - 1] || [];
+    const rowOfSquare = grid[rowIndex] || [];
+    const rowBelow = grid[rowIndex + 1] || [];
 
-  neighbors.forEach(neighbor => {
-    neighbor.isOpen = true;
-    if (neighbor.neighborsWithMines === 0) {
-      openSafeNeighbors(neighbor, newGrid);
-    }
-  });
-  return newGrid;
+    const neighbors = [
+      rowAbove[cellIndex],
+      rowOfSquare[cellIndex - 1],
+      rowOfSquare[cellIndex + 1],
+      rowBelow[cellIndex]
+    ].filter(n => n && !safeNeighbors.includes(n.id) && !n.hasMine);
+
+    neighbors.forEach(neighbor => {
+      safeNeighbors.push(neighbor.id);
+      if (neighbor.neighborsWithMines === 0) {
+        _getSafeNeighbors(neighbor, grid);
+      }
+    });
+  };
+
+  _getSafeNeighbors(square, grid);
+  return safeNeighbors;
 };

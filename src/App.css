@@ -113,6 +113,10 @@ ul {
   color: var(--danger);
 }
 
+.disabled {
+  pointer-events: none;
+}
+
 /* COMPONENT-SPECIFIC */
 table {
   width: 100%;

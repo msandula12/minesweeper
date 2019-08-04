@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { uniq } from 'lodash';
 
@@ -8,6 +8,8 @@ import {
   getDigitAsString,
   getSafeNeighbors,
   getSquaresWithMines,
+  handleRightClick,
+  handleSpacebar,
   hasWonGame
 } from '../utils/helpers';
 
@@ -71,9 +73,7 @@ const Square = ({
     }
   };
 
-  const toggleFlagged = (e: SyntheticEvent) => {
-    e.preventDefault();
-    e.persist();
+  const toggleFlagged = () => {
     if (isOpen) {
       return;
     }
@@ -118,9 +118,11 @@ const Square = ({
 
   return (
     <div
-      onClick={openSquare}
-      onContextMenu={toggleFlagged}
       className={squareCls}
+      onClick={openSquare}
+      onContextMenu={handleRightClick(toggleFlagged)}
+      onKeyPress={handleSpacebar(toggleFlagged)}
+      tabIndex={0}
     >
       {squareDisplay()}
     </div>

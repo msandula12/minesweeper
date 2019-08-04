@@ -1,3 +1,5 @@
+import React, { SyntheticEvent } from 'react';
+
 import { flatten, uniq } from 'lodash';
 
 import { GameStatus } from '../constants';
@@ -150,6 +152,21 @@ export const getSquaresWithMines = (grid: IGrid): string[] => {
     grid.map(rows => rows.filter(square => square.hasMine))
   );
   return squaresWithMines.map(square => square.id);
+};
+
+export const handleRightClick = (curriedFunction: Function) => (
+  e: SyntheticEvent
+) => {
+  e.preventDefault();
+  curriedFunction();
+};
+
+export const handleSpacebar = (curriedFunction: Function) => (
+  e: React.KeyboardEvent
+) => {
+  if (e.which === 32) {
+    curriedFunction();
+  }
 };
 
 export const hasWonGame = (

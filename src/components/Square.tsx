@@ -1,9 +1,14 @@
 import React, { useState, SyntheticEvent } from 'react';
 import classNames from 'classnames';
+import { uniq } from 'lodash';
 
 import { ALL, GameStatus } from '../constants';
 import { IGameConfiguration, IGrid, ISquare } from '../types';
-import { getSafeNeighbors, hasWonGame } from '../utils/helpers';
+import {
+  getSafeNeighbors,
+  getSquaresWithMines,
+  hasWonGame
+} from '../utils/helpers';
 
 import Icon from './Icon';
 
@@ -57,37 +62,28 @@ const Square = ({
   const openSquare = () => {
     if (!isOpen && !isFlagged) {
       if (square.hasMine) {
-        console.warn('GAME OVER!');
         setIsLosingMine(true);
         setStatus(GameStatus.LOST);
         setOpenSquares([ALL]);
         return;
       }
 
-      if (square.neighborsWithMines === 0) {
-        const safeNeighbors = getSafeNeighbors(
-          square,
-          grid,
-          flaggedSquares,
-          openSquares
-        );
-        setOpenSquares([...openSquares, square.id, ...safeNeighbors]);
-      } else {
-        setOpenSquares([...openSquares, square.id]);
-      }
+      const safeNeighbors =
+        square.neighborsWithMines === 0
+          ? getSafeNeighbors(square, grid, flaggedSquares, openSquares)
+          : [];
 
-      console.log('cells: ', config.rows * config.columns);
-      console.log('flaggedSquares: ', flaggedSquares.length);
-      console.log('openSquares: ', openSquares.length);
-      console.log('mines: ', config.mines);
+      const newOpenSquares = uniq([
+        ...openSquares,
+        square.id,
+        ...safeNeighbors
+      ]);
+      setOpenSquares(newOpenSquares);
 
-      console.log(
-        'hasWonGame: ',
-        hasWonGame(config, flaggedSquares, openSquares)
-      );
-
-      if (hasWonGame(config, flaggedSquares, openSquares)) {
-        console.warn('YOU WON!');
+      if (hasWonGame(config, flaggedSquares, newOpenSquares)) {
+        const squaresWithMine = getSquaresWithMines(grid);
+        setFlaggedSquares(squaresWithMine);
+        setStatus(GameStatus.WON);
       }
     }
   };

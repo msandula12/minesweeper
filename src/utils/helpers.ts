@@ -1,3 +1,5 @@
+import { flatten, uniq } from 'lodash';
+
 import { GameStatus } from '../constants';
 import {
   IGame,
@@ -135,7 +137,14 @@ export const getSafeNeighbors = (
   };
 
   _getSafeNeighbors(square, grid);
-  return safeNeighbors;
+  return uniq(safeNeighbors);
+};
+
+export const getSquaresWithMines = (grid: IGrid): string[] => {
+  const squaresWithMines = flatten(
+    grid.map(rows => rows.filter(square => square.hasMine))
+  );
+  return squaresWithMines.map(square => square.id);
 };
 
 export const hasWonGame = (

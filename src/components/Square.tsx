@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { uniq } from 'lodash';
 
 import { ALL, GameStatus } from '../constants';
-import { IGameConfiguration, IGrid, ISquare } from '../types';
+import { IGameConfiguration, IGame, ISquare } from '../types';
 import {
   getSafeNeighbors,
   getSquaresWithMines,
@@ -15,7 +15,7 @@ import Icon from './Icon';
 type Props = {
   config: IGameConfiguration;
   flaggedSquares: string[];
-  grid: IGrid;
+  game: IGame;
   openSquares: string[];
   setFlaggedSquares: (ids: string[]) => unknown;
   setOpenSquares: (ids: string[]) => unknown;
@@ -26,7 +26,7 @@ type Props = {
 const Square = ({
   config,
   flaggedSquares,
-  grid,
+  game,
   openSquares,
   setFlaggedSquares,
   setOpenSquares,
@@ -35,6 +35,9 @@ const Square = ({
 }: Props) => {
   const [isLosingMiine, setIsLosingMine] = useState(false);
 
+  const { grid, status } = game;
+
+  const gameIsOver = status !== GameStatus.IN_PROGRESS;
   const isFlagged = flaggedSquares.includes(square.id);
   const isOpen = openSquares.includes(ALL) || openSquares.includes(square.id);
 
@@ -109,6 +112,7 @@ const Square = ({
     'align-center',
     'justify-center',
     {
+      disabled: gameIsOver,
       exploded: isLosingMiine,
       open: isOpen,
       shut: !isOpen || isFlagged

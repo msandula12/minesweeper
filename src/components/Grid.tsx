@@ -32,7 +32,7 @@ const Grid = ({
             <Square
               config={config}
               flaggedSquares={flaggedSquares}
-              grid={game.grid}
+              game={game}
               key={`${game.id}-${rowIndex}-${sqIndex}`}
               openSquares={openSquares}
               setOpenSquares={setOpenSquares}

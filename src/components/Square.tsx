@@ -63,7 +63,7 @@ const Square = ({
       ]);
       setOpenSquares(newOpenSquares);
 
-      if (hasWonGame(config, flaggedSquares, newOpenSquares)) {
+      if (hasWonGame(config, newOpenSquares)) {
         const squaresWithMine = getSquaresWithMines(grid);
         setFlaggedSquares(squaresWithMine);
         setStatus(GameStatus.WON);

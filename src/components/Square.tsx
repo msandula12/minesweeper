@@ -5,6 +5,7 @@ import { uniq } from 'lodash';
 import { ALL, GameStatus } from '../constants';
 import { IGameConfiguration, IGame, ISquare } from '../types';
 import {
+  getDigitAsString,
   getSafeNeighbors,
   getSquaresWithMines,
   hasWonGame
@@ -40,27 +41,6 @@ const Square = ({
   const gameIsOver = status !== GameStatus.IN_PROGRESS;
   const isFlagged = flaggedSquares.includes(square.id);
   const isOpen = openSquares.includes(ALL) || openSquares.includes(square.id);
-
-  const getNumbeOfNeighbors = (neighbors: number) => {
-    const digitsAsWords = ['one', 'two', 'three', 'four'];
-    return digitsAsWords[neighbors - 1];
-  };
-
-  const squareDisplay = () => {
-    if (!isOpen && !isFlagged) {
-      return null;
-    } else if (isFlagged) {
-      return <Icon name="flag-checkered" />;
-    } else if (square.hasMine) {
-      return <Icon name="bomb" />;
-    } else if (square.neighborsWithMines) {
-      const numOfNeighbors = getNumbeOfNeighbors(square.neighborsWithMines);
-      const neighborsCls = `neighbors ${numOfNeighbors}-neighbors`;
-      return <span className={neighborsCls}>{square.neighborsWithMines}</span>;
-    } else {
-      return null;
-    }
-  };
 
   const openSquare = () => {
     if (!isOpen && !isFlagged) {
@@ -118,6 +98,22 @@ const Square = ({
       shut: !isOpen || isFlagged
     }
   );
+
+  const squareDisplay = () => {
+    if (!isOpen && !isFlagged) {
+      return null;
+    } else if (isFlagged) {
+      return <Icon name="flag-checkered" />;
+    } else if (square.hasMine) {
+      return <Icon name="bomb" />;
+    } else if (square.neighborsWithMines) {
+      const numOfNeighbors = getDigitAsString(square.neighborsWithMines);
+      const neighborsCls = `neighbors ${numOfNeighbors}-neighbors`;
+      return <span className={neighborsCls}>{square.neighborsWithMines}</span>;
+    } else {
+      return null;
+    }
+  };
 
   return (
     <div

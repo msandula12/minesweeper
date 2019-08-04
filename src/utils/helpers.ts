@@ -49,6 +49,11 @@ export const generateRandomID = (): string => {
     .substr(2, 9);
 };
 
+export const getDigitAsString = (digit: number): string => {
+  const digitsAsWords = ['one', 'two', 'three', 'four'];
+  return digitsAsWords[digit - 1];
+};
+
 export const getMineLocations = (
   rows: number,
   columns: number,

@@ -107,8 +107,9 @@ const Square = ({
     } else if (square.hasMine) {
       return <Icon name="bomb" />;
     } else if (square.neighborsWithMines) {
-      const numOfNeighbors = getDigitAsString(square.neighborsWithMines);
-      const neighborsCls = `neighbors ${numOfNeighbors}-neighbors`;
+      const neighborsCls = `neighbors ${getDigitAsString(
+        square.neighborsWithMines
+      )}-neighbors`;
       return <span className={neighborsCls}>{square.neighborsWithMines}</span>;
     } else {
       return null;

@@ -109,6 +109,14 @@ ul {
   margin: 0;
 }
 
+p {
+  margin-top: 0;
+}
+
+.indented-s {
+  padding-left: var(--size-s);
+}
+
 .danger {
   color: var(--danger);
 }

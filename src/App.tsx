@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 import {
@@ -19,6 +19,19 @@ const App: React.FC = () => {
   const [game, setGame] = useState(getNewGame(DEFAULT_CONFIG));
   const [flaggedSquares, setFlaggedSquares] = useState(EMPTY_STRING_ARRAY);
   const [openSquares, setOpenSquares] = useState(EMPTY_STRING_ARRAY);
+
+  // Start new game on 'F2'
+  useEffect(() => {
+    const startNewGameOnF2 = (e: KeyboardEvent) => {
+      if (e.code === 'F2') {
+        startNewGame();
+      }
+    };
+    window.addEventListener('keydown', startNewGameOnF2);
+    return () => {
+      window.removeEventListener('keydown', startNewGameOnF2);
+    };
+  });
 
   const setLevel = (level: GameLevel): void => {
     if (game.config.level === level) {

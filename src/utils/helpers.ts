@@ -161,10 +161,11 @@ export const handleRightClick = (curriedFunction: Function) => (
   curriedFunction();
 };
 
-export const handleSpacebar = (curriedFunction: Function) => (
+export const handleKeyboard = (curriedFunction: Function, charCode: string) => (
   e: React.KeyboardEvent
 ) => {
-  if (e.which === 32) {
+  e.persist();
+  if (e.nativeEvent.code === charCode) {
     curriedFunction();
   }
 };

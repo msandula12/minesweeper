@@ -9,7 +9,7 @@ import {
   getSafeNeighbors,
   getSquaresWithMines,
   handleRightClick,
-  handleSpacebar,
+  handleKeyboard,
   hasWonGame
 } from '../utils/helpers';
 
@@ -121,7 +121,7 @@ const Square = ({
       className={squareCls}
       onClick={openSquare}
       onContextMenu={handleRightClick(toggleFlagged)}
-      onKeyPress={handleSpacebar(toggleFlagged)}
+      onKeyPress={handleKeyboard(toggleFlagged, 'Space')}
       tabIndex={0}
     >
       {squareDisplay()}

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { uniq } from 'lodash';
 
 import { ALL, GameStatus } from '../constants';
 import { IGameConfiguration, IGame, ISquare } from '../types';
@@ -10,7 +9,8 @@ import {
   getSquaresWithMines,
   handleRightClick,
   handleKeyboard,
-  hasWonGame
+  hasWonGame,
+  uniq
 } from '../utils/helpers';
 
 import Icon from './Icon';

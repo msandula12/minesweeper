@@ -1,7 +1,5 @@
 import React, { SyntheticEvent } from 'react';
 
-import { flatten, uniq } from 'lodash';
-
 import { GameStatus } from '../constants';
 import {
   IGame,
@@ -10,6 +8,10 @@ import {
   IMineLocation,
   ISquare
 } from '../types';
+
+export const flatten = <T>(list: T[][]): T[] => {
+  return ([] as T[]).concat(...list);
+};
 
 export const generateGridRows = (config: IGameConfiguration): IGrid => {
   const { columns, mines, rows } = config;
@@ -176,4 +178,8 @@ export const hasWonGame = (
 ): boolean => {
   const { columns, mines, rows } = config;
   return columns * rows === openSquares.length + mines;
+};
+
+export const uniq = <T>(list: T[]): T[] => {
+  return list.filter((item, index, array) => array.indexOf(item) === index);
 };

@@ -35,7 +35,7 @@ const Minesweeper = ({
           mines={game.config.mines}
         />
         <Smiley status={game.status} startNewGame={startNewGame} />
-        <TimeCounter />
+        <TimeCounter status={game.status} />
       </div>
       <Grid
         config={game.config}

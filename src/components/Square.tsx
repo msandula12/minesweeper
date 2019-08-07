@@ -49,6 +49,7 @@ const Square = ({
       if (square.hasMine) {
         setIsLosingMine(true);
         setStatus(GameStatus.LOST);
+        setFlaggedSquares([]);
         setOpenSquares([ALL]);
         return;
       }

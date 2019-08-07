@@ -9,6 +9,7 @@ type Props = {
   config: IGameConfiguration;
   flaggedSquares: string[];
   game: IGame;
+  makeFirstMove: () => unknown;
   openSquares: string[];
   setFlaggedSquares: (ids: string[]) => unknown;
   setOpenSquares: (ids: string[]) => unknown;
@@ -19,10 +20,11 @@ const Grid = ({
   config,
   flaggedSquares,
   game,
+  makeFirstMove,
   openSquares,
   setFlaggedSquares,
-  setStatus,
-  setOpenSquares
+  setOpenSquares,
+  setStatus
 }: Props) => {
   return (
     <div className="grid margin-bottom-m">
@@ -34,9 +36,10 @@ const Grid = ({
               flaggedSquares={flaggedSquares}
               game={game}
               key={`${game.id}-${rowIndex}-${sqIndex}`}
+              makeFirstMove={makeFirstMove}
               openSquares={openSquares}
-              setOpenSquares={setOpenSquares}
               setFlaggedSquares={setFlaggedSquares}
+              setOpenSquares={setOpenSquares}
               setStatus={setStatus}
               square={square}
             />

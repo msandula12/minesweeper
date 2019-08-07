@@ -13,6 +13,12 @@ export enum GameLevel {
   CUSTOM = 'Custom'
 }
 
+export enum GameTimer {
+  PAUSED = 'PAUSED',
+  RESET = 'RESET',
+  RUNNING = 'RUNNING'
+}
+
 export const ALL = '*';
 export const EMPTY_STRING_ARRAY: string[] = [];
 

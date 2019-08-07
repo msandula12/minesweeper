@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-import { GameStatus } from '../constants';
+import { GameTimer } from '../constants';
 
 import Counter from './Counter';
 
 type Props = {
-  status: GameStatus;
+  gameTimer: GameTimer;
 };
 
 /**
@@ -15,22 +15,26 @@ type Props = {
  * ON NEW GAME: secondsElapsed = 0
  * if secondsElapsed = 999, set game to lost
  */
-
-const TimeCounter = ({ status }: Props) => {
+const TimeCounter = ({ gameTimer }: Props) => {
   const [secondsElapsed, setSecondsElapsed] = useState(0);
 
   useEffect(() => {
-    // const gameTimer = setInterval(countTime, 1000);
-    // return () => {
-    //   clearInterval(gameTimer);
-    // };
-  }, [status]);
+    let timer: number | undefined;
+    if (gameTimer === GameTimer.RUNNING) {
+      timer = window.setInterval(() => {
+        setSecondsElapsed(secondsElapsed => secondsElapsed + 1);
+      }, 1000);
+    } else if (gameTimer === GameTimer.RESET) {
+      window.clearInterval(timer);
+      setSecondsElapsed(0);
+    } else {
+      window.clearInterval(timer);
+    }
 
-  const startTime = new Date().getTime();
-  const countTime = () => {
-    const updatedTime = new Date().getTime();
-    setSecondsElapsed(parseInt(String((updatedTime - startTime) / 1000)));
-  };
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, [gameTimer]);
 
   return (
     <div className="flex-column align-center">

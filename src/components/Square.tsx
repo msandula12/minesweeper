@@ -19,6 +19,7 @@ type Props = {
   config: IGameConfiguration;
   flaggedSquares: string[];
   game: IGame;
+  makeFirstMove: () => unknown;
   openSquares: string[];
   setFlaggedSquares: (ids: string[]) => unknown;
   setOpenSquares: (ids: string[]) => unknown;
@@ -30,6 +31,7 @@ const Square = ({
   config,
   flaggedSquares,
   game,
+  makeFirstMove,
   openSquares,
   setFlaggedSquares,
   setOpenSquares,
@@ -44,7 +46,14 @@ const Square = ({
   const isFlagged = flaggedSquares.includes(square.id);
   const isOpen = openSquares.includes(ALL) || openSquares.includes(square.id);
 
+  const isInitialAction = (): boolean => {
+    return flaggedSquares.length === 0 && openSquares.length === 0;
+  };
+
   const openSquare = () => {
+    if (isInitialAction()) {
+      makeFirstMove();
+    }
     if (!isOpen && !isFlagged) {
       if (square.hasMine) {
         setIsLosingMine(true);
@@ -75,6 +84,9 @@ const Square = ({
   };
 
   const toggleFlagged = () => {
+    if (isInitialAction()) {
+      makeFirstMove();
+    }
     if (isOpen) {
       return;
     }

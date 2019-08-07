@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GameStatus } from '../constants';
+import { GameStatus, GameTimer } from '../constants';
 import { IGame } from '../types';
 
 import Grid from './Grid';
@@ -11,6 +11,8 @@ import TimeCounter from './TimeCounter';
 type Props = {
   flaggedSquares: string[];
   game: IGame;
+  gameTimer: GameTimer;
+  makeFirstMove: () => unknown;
   openSquares: string[];
   setFlaggedSquares: (ids: string[]) => unknown;
   setOpenSquares: (ids: string[]) => unknown;
@@ -19,10 +21,12 @@ type Props = {
 };
 
 const Minesweeper = ({
-  game,
   flaggedSquares,
-  setFlaggedSquares,
+  game,
+  gameTimer,
+  makeFirstMove,
   openSquares,
+  setFlaggedSquares,
   setOpenSquares,
   setStatus,
   startNewGame
@@ -35,12 +39,13 @@ const Minesweeper = ({
           mines={game.config.mines}
         />
         <Smiley status={game.status} startNewGame={startNewGame} />
-        <TimeCounter status={game.status} />
+        <TimeCounter gameTimer={gameTimer} />
       </div>
       <Grid
         config={game.config}
         flaggedSquares={flaggedSquares}
         game={game}
+        makeFirstMove={makeFirstMove}
         openSquares={openSquares}
         setFlaggedSquares={setFlaggedSquares}
         setOpenSquares={setOpenSquares}

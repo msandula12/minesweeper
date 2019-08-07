@@ -224,6 +224,10 @@ td {
   background: var(--square-open);
 }
 
+.open:focus {
+  outline: none;
+}
+
 .neighbors {
   font-weight: bold;
 }

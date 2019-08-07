@@ -137,7 +137,7 @@ const Square = ({
       onClick={openSquare}
       onContextMenu={handleRightClick(toggleFlagged)}
       onKeyPress={handleKeyboard(toggleFlagged, 'Space')}
-      tabIndex={0}
+      tabIndex={isOpen ? -1 : 0}
     >
       {squareDisplay()}
     </div>

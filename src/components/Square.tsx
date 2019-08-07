@@ -5,12 +5,14 @@ import { ALL, GameStatus } from '../constants';
 import { IGameConfiguration, IGame, ISquare } from '../types';
 import {
   getDigitAsString,
-  getSafeNeighbors,
-  getSquaresWithMines,
   handleRightClick,
   handleKeyboard,
-  hasWonGame,
   uniq
+} from '../utils/general';
+import {
+  getSafeNeighbors,
+  getSquaresWithMines,
+  hasWonGame
 } from '../utils/helpers';
 
 import Icon from './Icon';

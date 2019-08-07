@@ -8,13 +8,6 @@ type Props = {
   gameTimer: GameTimer;
 };
 
-/**
- * INIT: secondsElapsed = 0
- * ON FIRST ACTION: secondsElapsed += 1
- * ON GAME END: pause secondsElapsed
- * ON NEW GAME: secondsElapsed = 0
- * if secondsElapsed = 999, set game to lost
- */
 const TimeCounter = ({ gameTimer }: Props) => {
   const [secondsElapsed, setSecondsElapsed] = useState(0);
 
@@ -22,7 +15,7 @@ const TimeCounter = ({ gameTimer }: Props) => {
     let timer: number | undefined;
     if (gameTimer === GameTimer.RUNNING) {
       timer = window.setInterval(() => {
-        setSecondsElapsed(secondsElapsed => secondsElapsed + 1);
+        setSecondsElapsed(seconds => seconds + 1);
       }, 1000);
     } else if (gameTimer === GameTimer.RESET) {
       window.clearInterval(timer);

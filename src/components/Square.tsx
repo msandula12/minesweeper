@@ -74,7 +74,7 @@ const Square = ({
         setOpenSquares([
           ...openSquares,
           ...newFalseFlags,
-          ...difference(squaresWithMines, ...flaggedSquares)
+          ...difference(squaresWithMines, flaggedSquares)
         ]);
         return;
       }

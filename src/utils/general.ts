@@ -1,6 +1,6 @@
 import React, { SyntheticEvent } from 'react';
 
-export const difference = <T>(list: T[], ...exclusions: T[]): T[] => {
+export const difference = <T>(list: T[], exclusions: T[]): T[] => {
   return list.filter(item => !exclusions.includes(item));
 };
 

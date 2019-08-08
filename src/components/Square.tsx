@@ -61,7 +61,8 @@ const Square = ({
         setIsLosingMine(true);
         setStatus(GameStatus.LOST);
         setFlaggedSquares([]);
-        setOpenSquares([ALL]);
+        const squaresWithMine = getSquaresWithMines(grid);
+        setOpenSquares([...openSquares, ...squaresWithMine]);
         return;
       }
 

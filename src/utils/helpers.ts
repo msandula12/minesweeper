@@ -135,10 +135,10 @@ export const getSafeNeighbors = (
 };
 
 export const getSquaresWithMines = (grid: IGrid): string[] => {
-  const squaresWithMines = flatten(
+  const squaresWithMiness = flatten(
     grid.map(rows => rows.filter(square => square.hasMine))
   );
-  return squaresWithMines.map(square => square.id);
+  return squaresWithMiness.map(square => square.id);
 };
 
 export const hasWonGame = (

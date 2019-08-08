@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { GameStatus } from '../constants';
+import { EMPTY_STRING_ARRAY, GameStatus } from '../constants';
 import { IGame, IGameConfiguration, ISquare } from '../types';
 
 import Square from './Square';
@@ -26,6 +26,12 @@ const Grid = ({
   setOpenSquares,
   setStatus
 }: Props) => {
+  const [falseFlags, setFalseFlags] = useState(EMPTY_STRING_ARRAY);
+
+  const updateFalseFlags = (ids: string[]) => {
+    setFalseFlags(ids);
+  };
+
   return (
     <div className="grid margin-bottom-m">
       {game.grid.map((row: ISquare[], rowIndex: number) => (
@@ -33,11 +39,13 @@ const Grid = ({
           {row.map((square: ISquare, sqIndex: number) => (
             <Square
               config={config}
+              falseFlags={falseFlags}
               flaggedSquares={flaggedSquares}
               game={game}
               key={`${game.id}-${rowIndex}-${sqIndex}`}
               makeFirstMove={makeFirstMove}
               openSquares={openSquares}
+              setFalseFlags={updateFalseFlags}
               setFlaggedSquares={setFlaggedSquares}
               setOpenSquares={setOpenSquares}
               setStatus={setStatus}

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { ALL, GameStatus } from '../constants';
 import { IGameConfiguration, IGame, ISquare } from '../types';
 import {
+  difference,
   getDigitAsString,
   handleRightClick,
   handleKeyboard,
@@ -19,10 +20,12 @@ import Icon from './Icon';
 
 type Props = {
   config: IGameConfiguration;
+  falseFlags: string[];
   flaggedSquares: string[];
   game: IGame;
   makeFirstMove: () => unknown;
   openSquares: string[];
+  setFalseFlags: (ids: string[]) => unknown;
   setFlaggedSquares: (ids: string[]) => unknown;
   setOpenSquares: (ids: string[]) => unknown;
   setStatus: (status: GameStatus) => unknown;
@@ -31,10 +34,12 @@ type Props = {
 
 const Square = ({
   config,
+  falseFlags,
   flaggedSquares,
   game,
   makeFirstMove,
   openSquares,
+  setFalseFlags,
   setFlaggedSquares,
   setOpenSquares,
   setStatus,
@@ -45,6 +50,7 @@ const Square = ({
   const { grid, status } = game;
 
   const gameIsOver = status !== GameStatus.IN_PROGRESS;
+  const isFalseFlag = falseFlags.includes(square.id);
   const isFlagged = flaggedSquares.includes(square.id);
   const isOpen = openSquares.includes(ALL) || openSquares.includes(square.id);
 
@@ -59,10 +65,17 @@ const Square = ({
     if (!isOpen && !isFlagged) {
       if (square.hasMine) {
         setIsLosingMine(true);
+        const squaresWithMines = getSquaresWithMines(grid);
+        const newFalseFlags = flaggedSquares.filter(
+          flagged => !squaresWithMines.includes(flagged)
+        );
+        setFalseFlags(newFalseFlags);
         setStatus(GameStatus.LOST);
-        setFlaggedSquares([]);
-        const squaresWithMine = getSquaresWithMines(grid);
-        setOpenSquares([...openSquares, ...squaresWithMine]);
+        setOpenSquares([
+          ...openSquares,
+          ...newFalseFlags,
+          ...difference(squaresWithMines, ...flaggedSquares)
+        ]);
         return;
       }
 
@@ -79,8 +92,8 @@ const Square = ({
       setOpenSquares(newOpenSquares);
 
       if (hasWonGame(config, newOpenSquares)) {
-        const squaresWithMine = getSquaresWithMines(grid);
-        setFlaggedSquares(squaresWithMine);
+        const squaresWithMines = getSquaresWithMines(grid);
+        setFlaggedSquares(squaresWithMines);
         setStatus(GameStatus.WON);
       }
     }
@@ -110,6 +123,7 @@ const Square = ({
     {
       disabled: gameIsOver,
       exploded: isLosingMiine,
+      'false-flag-container': isFalseFlag,
       open: isOpen,
       shut: !isOpen || isFlagged
     }
@@ -118,6 +132,13 @@ const Square = ({
   const squareDisplay = () => {
     if (!isOpen && !isFlagged) {
       return null;
+    } else if (isFalseFlag) {
+      return (
+        <>
+          <Icon name="bomb" />
+          <Icon className="false-flag" name="times" />
+        </>
+      );
     } else if (isFlagged) {
       return <Icon name="flag-checkered" />;
     } else if (square.hasMine) {

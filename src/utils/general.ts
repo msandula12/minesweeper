@@ -1,5 +1,9 @@
 import React, { SyntheticEvent } from 'react';
 
+export const difference = <T>(list: T[], ...exclusions: T[]): T[] => {
+  return list.filter(item => !exclusions.includes(item));
+};
+
 export const flatten = <T>(list: T[][]): T[] => {
   return ([] as T[]).concat(...list);
 };

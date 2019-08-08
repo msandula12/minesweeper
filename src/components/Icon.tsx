@@ -11,9 +11,9 @@ const Icon = ({ className, name, onClick, withMargin }: Props) => {
   return (
     <i
       onClick={onClick}
-      className={`fas fa-${name} ${
-        withMargin ? 'margin-right-xs' : ''
-      } ${className}`}
+      className={`icon fas fa-${name} ${withMargin ? 'margin-right-xs' : ''} ${
+        className ? className : ''
+      }`}
     />
   );
 };

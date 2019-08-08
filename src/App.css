@@ -18,6 +18,7 @@
 
   /* MISC. */
   --danger: crimson;
+  --cancel: darkred;
 }
 
 /* HELPERS */
@@ -234,6 +235,20 @@ td {
 
 .exploded {
   background: var(--danger);
+}
+
+.falseflag {
+  background: chartreuse;
+}
+
+.false-flag-container {
+  position: relative;
+}
+
+.false-flag {
+  position: absolute;
+  color: var(--cancel);
+  font-size: var(--size-l);
 }
 
 .one-neighbors {

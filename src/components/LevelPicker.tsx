@@ -84,7 +84,7 @@ const LevelPicker = ({
                   <td className="center width-xl">
                     <Input
                       className="center fluid"
-                      max={99}
+                      max={config.columns * config.rows}
                       min={1}
                       name="mines"
                       onChange={handleOnChange}

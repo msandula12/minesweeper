@@ -18,6 +18,7 @@ import Rules from './components/Rules';
 
 const App: React.FC = () => {
   const [flaggedSquares, setFlaggedSquares] = useState(EMPTY_STRING_ARRAY);
+  const [currentLevel, setCurrentLevel] = useState(GameLevel.BEGINNER);
   const [game, setGame] = useState(getNewGame(DEFAULT_CONFIG));
   const [gameTimer, setGameTimer] = useState(GameTimer.PAUSED);
   const [firstMoveHasBeenMade, setFirstMoveHasBeenMade] = useState(false);
@@ -44,22 +45,32 @@ const App: React.FC = () => {
     setGameTimer(GameTimer.RUNNING);
   };
 
-  const setLevel = (level: GameLevel): void => {
-    if (game.config.level === level) {
+  const updateCurrentLevel = (level: GameLevel) => {
+    if (currentLevel === level) {
       return;
     }
-    const newConfig = GameConfigurations.filter(
-      config => config.level === level
-    )[0];
-    setGame(getNewGame(newConfig));
+    setCurrentLevel(level);
   };
+
+  // const setLevel = (level: GameLevel): void => {
+  //   if (game.config.level === level) {
+  //     return;
+  //   }
+  //   const newConfig = GameConfigurations.filter(
+  //     config => config.level === level
+  //   )[0];
+  //   setGame(getNewGame(newConfig));
+  // };
 
   const startNewGame = () => {
     setGameTimer(GameTimer.RESET);
     setFirstMoveHasBeenMade(false);
     setFlaggedSquares(EMPTY_STRING_ARRAY);
     setOpenSquares(EMPTY_STRING_ARRAY);
-    setGame(getNewGame(game.config));
+    const newConfig = GameConfigurations.filter(
+      config => config.level === currentLevel
+    )[0];
+    setGame(getNewGame(newConfig));
   };
 
   const setStatus = (status: GameStatus) => {
@@ -86,7 +97,11 @@ const App: React.FC = () => {
       <div className="flex-row justify-between">
         <div className="column column-sm">
           <h2 className="mono side-heading margin-bottom-m">Level</h2>
-          <LevelPicker currentLevel={game.config.level} setLevel={setLevel} />
+          <LevelPicker
+            currentLevel={currentLevel}
+            setCurrentLevel={updateCurrentLevel}
+            startNewGame={startNewGame}
+          />
         </div>
         <Minesweeper
           flaggedSquares={flaggedSquares}

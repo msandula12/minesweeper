@@ -106,6 +106,28 @@ code {
   color: #aaa;
 }
 
+button {
+  padding: var(--size-s);
+  border-radius: var(--size-xs);
+  box-sizing: border-box;
+  border: 1px solid #bbb;
+  font-family: monospace;
+  background: #eee;
+  font-size: var(--size-m);
+}
+
+button:hover {
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  background: #ddd;
+  box-shadow: 0 4px 24px -10px rgba(0, 0, 0, 0.4);
+}
+
+table {
+  font-family: monospace;
+  font-size: var(--size-m);
+}
+
 ul {
   margin: 0;
 }

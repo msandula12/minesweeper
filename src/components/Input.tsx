@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 type Props = {
   className?: string;
   max?: number;
   min?: number;
-  onChange?: () => unknown;
+  name?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => unknown;
   type?: string;
   value?: any;
 };
@@ -13,6 +14,7 @@ const Input = ({
   className,
   max,
   min,
+  name,
   onChange,
   type = 'text',
   value
@@ -22,6 +24,7 @@ const Input = ({
       className={className ? className : ''}
       max={max}
       min={min}
+      name={name}
       onChange={onChange}
       type={type}
       value={value}

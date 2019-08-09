@@ -15,9 +15,11 @@ import { getNewGame } from './utils/helpers';
 import LevelPicker from './components/LevelPicker';
 import Minesweeper from './components/Minesweeper';
 import Rules from './components/Rules';
+import { IGameConfiguration } from './types';
 
 const App: React.FC = () => {
   const [flaggedSquares, setFlaggedSquares] = useState(EMPTY_STRING_ARRAY);
+  const [configurations, setConfigurations] = useState(GameConfigurations);
   const [currentLevel, setCurrentLevel] = useState(GameLevel.BEGINNER);
   const [game, setGame] = useState(getNewGame(DEFAULT_CONFIG));
   const [gameTimer, setGameTimer] = useState(GameTimer.PAUSED);
@@ -52,22 +54,12 @@ const App: React.FC = () => {
     setCurrentLevel(level);
   };
 
-  // const setLevel = (level: GameLevel): void => {
-  //   if (game.config.level === level) {
-  //     return;
-  //   }
-  //   const newConfig = GameConfigurations.filter(
-  //     config => config.level === level
-  //   )[0];
-  //   setGame(getNewGame(newConfig));
-  // };
-
   const startNewGame = () => {
     setGameTimer(GameTimer.RESET);
     setFirstMoveHasBeenMade(false);
     setFlaggedSquares(EMPTY_STRING_ARRAY);
     setOpenSquares(EMPTY_STRING_ARRAY);
-    const newConfig = GameConfigurations.filter(
+    const newConfig = configurations.filter(
       config => config.level === currentLevel
     )[0];
     setGame(getNewGame(newConfig));
@@ -81,6 +73,10 @@ const App: React.FC = () => {
       ...game,
       status
     });
+  };
+
+  const updateConfigurations = (configs: IGameConfiguration[]) => {
+    setConfigurations(configs);
   };
 
   const updateFlaggedSquares = (ids: string[]) => {
@@ -98,7 +94,9 @@ const App: React.FC = () => {
         <div className="column column-sm">
           <h2 className="mono side-heading margin-bottom-m">Level</h2>
           <LevelPicker
+            configurations={configurations}
             currentLevel={currentLevel}
+            setConfigurations={updateConfigurations}
             setCurrentLevel={updateCurrentLevel}
             startNewGame={startNewGame}
           />

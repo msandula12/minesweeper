@@ -1,20 +1,41 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
-import { GameConfigurations, GameLevel } from '../constants';
+import { GameLevel } from '../constants';
+import { IGameConfiguration } from '../types';
 
 import Input from './Input';
 
 type Props = {
+  configurations: IGameConfiguration[];
   currentLevel: GameLevel;
+  setConfigurations: (configs: IGameConfiguration[]) => unknown;
   setCurrentLevel: (level: GameLevel) => unknown;
   startNewGame: () => unknown;
 };
 
 const LevelPicker = ({
+  configurations,
   currentLevel,
+  setConfigurations,
   setCurrentLevel,
   startNewGame
 }: Props) => {
+  const handleOnChange = ({
+    target: { name, value }
+  }: ChangeEvent<HTMLInputElement>) => {
+    setConfigurations(
+      configurations.map(config => {
+        if (config.level !== GameLevel.CUSTOM) {
+          return config;
+        }
+        return {
+          ...config,
+          [name]: value
+        };
+      })
+    );
+  };
+
   return (
     <>
       <table cellSpacing="0" className="margin-bottom-m">
@@ -27,7 +48,7 @@ const LevelPicker = ({
           </tr>
         </thead>
         <tbody>
-          {GameConfigurations.map(config => (
+          {configurations.map(config => (
             <tr
               key={config.level}
               className={`row-level ${
@@ -43,6 +64,8 @@ const LevelPicker = ({
                       className="center fluid"
                       max={99}
                       min={1}
+                      name="columns"
+                      onChange={handleOnChange}
                       type="number"
                       value={config.columns}
                     />
@@ -52,6 +75,8 @@ const LevelPicker = ({
                       className="center fluid"
                       max={99}
                       min={1}
+                      name="rows"
+                      onChange={handleOnChange}
                       type="number"
                       value={config.rows}
                     />
@@ -61,6 +86,8 @@ const LevelPicker = ({
                       className="center fluid"
                       max={99}
                       min={1}
+                      name="mines"
+                      onChange={handleOnChange}
                       type="number"
                       value={config.mines}
                     />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import classNames from 'classnames';
 
 import { ALL, GameStatus } from '../constants';
@@ -56,6 +56,15 @@ const Square = ({
 
   const isInitialAction = (): boolean => {
     return flaggedSquares.length === 0 && openSquares.length === 0;
+  };
+
+  const handleSquareClick = (e: MouseEvent) => {
+    e.stopPropagation();
+    if (e.ctrlKey) {
+      toggleFlagged();
+    } else {
+      openSquare();
+    }
   };
 
   const openSquare = () => {
@@ -156,7 +165,7 @@ const Square = ({
   return (
     <div
       className={squareCls}
-      onClick={openSquare}
+      onClick={handleSquareClick}
       onContextMenu={handleRightClick(toggleFlagged)}
       onKeyPress={handleKeyboard(toggleFlagged, 'Space')}
       tabIndex={isOpen ? -1 : 0}

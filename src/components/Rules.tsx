@@ -18,8 +18,9 @@ const Rules = () => {
         <Icon name="flag-checkered" />)
       </h3>
       <p className="indented-s">
-        If you think a square has a mine, you can flag it by right-clicking it
-        or hovering over it and pressing <code>space</code>
+        If you think a square has a mine, you can flag it by right-clicking,{' '}
+        left-clicking while holding down the <code>ctrl</code> key, or hovering
+        over it and pressing <code>space</code>
       </p>
 
       <h3 className="mono">View adjacent squares</h3>

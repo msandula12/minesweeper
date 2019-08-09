@@ -218,6 +218,7 @@ td {
   background: black;
   border-radius: 50%;
   -webkit-text-stroke: 2px black;
+  margin: 0 var(--size-xl);
 }
 
 .smiley:hover {

@@ -9,7 +9,7 @@ type Props = {
 
 const MineCounter = ({ flaggedSquares, mines }: Props) => {
   return (
-    <div className="flex-column align-center">
+    <div>
       <div className="counter-label">Mines</div>
       <Counter count={mines - flaggedSquares.length} />
     </div>

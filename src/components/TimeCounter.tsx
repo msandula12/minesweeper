@@ -30,7 +30,7 @@ const TimeCounter = ({ gameTimer }: Props) => {
   }, [gameTimer]);
 
   return (
-    <div className="flex-column align-center">
+    <div>
       <div className="counter-label">Time</div>
       <Counter count={secondsElapsed} />
     </div>

@@ -33,7 +33,7 @@ const Minesweeper = ({
 }: Props) => {
   return (
     <div className="flex-column">
-      <div className="fluid flex-row justify-between margin-bottom-m">
+      <div className="flex-row justify-center margin-bottom-m">
         <MineCounter
           flaggedSquares={flaggedSquares}
           mines={game.config.mines}

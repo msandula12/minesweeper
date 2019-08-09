@@ -30,7 +30,7 @@ const LevelPicker = ({
         }
         return {
           ...config,
-          [name]: value
+          [name]: Number(value)
         };
       })
     );

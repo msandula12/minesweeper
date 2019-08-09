@@ -33,7 +33,7 @@ const Grid = ({
   };
 
   return (
-    <div className="grid margin-bottom-m">
+    <div className="margin-bottom-m">
       {game.grid.map((row: ISquare[], rowIndex: number) => (
         <div className="flex-row justify-center" key={`${game.id}-${rowIndex}`}>
           {row.map((square: ISquare, sqIndex: number) => (

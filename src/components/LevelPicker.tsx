@@ -2,6 +2,8 @@ import React from 'react';
 
 import { GameConfigurations, GameLevel } from '../constants';
 
+import Input from './Input';
+
 type Props = {
   currentLevel: GameLevel;
   setCurrentLevel: (level: GameLevel) => unknown;
@@ -19,9 +21,9 @@ const LevelPicker = ({
         <thead>
           <tr>
             <th>Level</th>
-            <th>Columns</th>
-            <th>Rows</th>
-            <th>Mines</th>
+            <th className="center width-xl">Columns</th>
+            <th className="center width-xl">Rows</th>
+            <th className="center width-xl">Mines</th>
           </tr>
         </thead>
         <tbody>
@@ -34,9 +36,43 @@ const LevelPicker = ({
               onClick={() => setCurrentLevel(config.level)}
             >
               <td>{config.level}</td>
-              <td className="center">{config.columns}</td>
-              <td className="center">{config.rows}</td>
-              <td className="center">{config.mines}</td>
+              {config.level === GameLevel.CUSTOM ? (
+                <>
+                  <td className="center width-xl">
+                    <Input
+                      className="center fluid"
+                      max={99}
+                      min={1}
+                      type="number"
+                      value={config.columns}
+                    />
+                  </td>
+                  <td className="center width-xl">
+                    <Input
+                      className="center fluid"
+                      max={99}
+                      min={1}
+                      type="number"
+                      value={config.rows}
+                    />
+                  </td>
+                  <td className="center width-xl">
+                    <Input
+                      className="center fluid"
+                      max={99}
+                      min={1}
+                      type="number"
+                      value={config.mines}
+                    />
+                  </td>
+                </>
+              ) : (
+                <>
+                  <td className="center width-xl">{config.columns}</td>
+                  <td className="center width-xl">{config.rows}</td>
+                  <td className="center width-xl">{config.mines}</td>
+                </>
+              )}
             </tr>
           ))}
         </tbody>

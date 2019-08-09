@@ -123,6 +123,15 @@ button:hover {
   box-shadow: 0 4px 24px -10px rgba(0, 0, 0, 0.4);
 }
 
+input {
+  padding: var(--size-xs);
+  border-radius: var(--size-xs);
+  box-sizing: border-box;
+  border: 1px solid #bbb;
+  font-family: monospace;
+  font-size: var(--size-m);
+}
+
 table {
   font-family: monospace;
   font-size: var(--size-m);
@@ -148,9 +157,15 @@ p {
   pointer-events: none;
 }
 
+.width-xl {
+  /* width: var(--size-xl); */
+  width: 48px;
+}
+
 /* COMPONENT-SPECIFIC */
 table {
   width: 100%;
+  table-layout: fixed;
 }
 
 th {

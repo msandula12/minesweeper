@@ -5,28 +5,35 @@ import Icon from './Icon';
 const Rules = () => {
   return (
     <>
-      <h3 className="mono">New game</h3>
-      <p className="indented-s">
-        Press <code>F2</code> to start a new game
-      </p>
-
-      <h3 className="mono">Open a square</h3>
-      <p className="indented-s">Left-click an empty square to reveal it</p>
-
-      <h3 className="mono">
-        Flag a square (
-        <Icon name="flag-checkered" />)
-      </h3>
-      <p className="indented-s">
-        If you think a square has a mine, you can flag it by right-clicking,{' '}
-        left-clicking while holding down the <code>ctrl</code> key, or hovering
-        over it and pressing <code>space</code>
-      </p>
-
-      <h3 className="mono">View adjacent squares</h3>
-      <p className="indented-s">
-        Midde-click (or left+right click) a square to show its adjacent squares
-      </p>
+      <div className="margin-bottom-s">
+        <h3 className="mono">Start a new game</h3>
+        <p className="indented-s">
+          - Press <code>F2</code>
+        </p>
+      </div>
+      <div className="margin-bottom-s">
+        <h3 className="mono">Open a square</h3>
+        <p className="indented-s">- Left-click</p>
+      </div>
+      <div className="margin-bottom-s">
+        <h3 className="mono">
+          Flag a square (
+          <Icon name="flag-checkered" />)
+        </h3>
+        <p className="indented-s">- Right-click</p>
+        <p className="indented-s">
+          - Left-click while holding down <code>ctrl</code>
+        </p>
+        <p className="indented-s">
+          - Hover over it and press <code>space</code>
+        </p>
+      </div>
+      <div className="margin-bottom-s">
+        <h3 className="mono">View adjacent squares</h3>
+        <p className="indented-s">
+          - Middle-click (left- plus right-click)
+        </p>{' '}
+      </div>
     </>
   );
 };

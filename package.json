@@ -15,6 +15,9 @@
     "react-scripts": "3.0.1",
     "typescript": "3.5.3"
   },
+  "devDependencies": {
+    "eslint-utils": ">=1.4.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

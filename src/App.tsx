@@ -7,7 +7,7 @@ import {
   GameConfigurations,
   GameLevel,
   GameStatus,
-  GameTimer
+  GameTimer,
 } from './constants';
 
 import { getNewGame } from './utils/helpers';
@@ -60,7 +60,7 @@ const App: React.FC = () => {
     setFlaggedSquares(EMPTY_STRING_ARRAY);
     setOpenSquares(EMPTY_STRING_ARRAY);
     const newConfig = configurations.filter(
-      config => config.level === currentLevel
+      (config) => config.level === currentLevel
     )[0];
     setGame(getNewGame(newConfig));
   };
@@ -71,7 +71,7 @@ const App: React.FC = () => {
     }
     setGame({
       ...game,
-      status
+      status,
     });
   };
 
@@ -89,7 +89,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <h1 className="center mono font-l margin-bottom-l">Minesweeper</h1>
+      <h1 className="center mono font-l margin-bottom-l">"Mike"-sweeper</h1>
       <div className="flex-row justify-between">
         <div className="column column-sm">
           <h2 className="mono side-heading margin-bottom-m">Level</h2>
